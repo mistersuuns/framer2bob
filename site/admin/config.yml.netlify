@@ -1,0 +1,58 @@
+backend:
+  name: git-gateway  # Use this for Netlify hosting
+  branch: main
+
+# Uncomment below to enable drafts
+# publish_mode: editorial_workflow
+
+media_folder: "site/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "publications"
+    label: "Publications"
+    folder: "data/publications"
+    create: true
+    slug: "{{slug}}"
+    format: "frontmatter"
+    extension: "md"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Slug", name: "slug", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Year", name: "year", widget: "number", required: false}
+      - {label: "Authors", name: "authors", widget: "list", default: []}
+      - {label: "Content", name: "body", widget: "markdown"}
+      - {label: "URL", name: "url", widget: "string", required: false}
+      - {label: "Category", name: "category", widget: "string", default: "publication"}
+
+  - name: "news"
+    label: "News"
+    folder: "data/news"
+    create: true
+    slug: "{{slug}}"
+    format: "frontmatter"
+    extension: "md"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Slug", name: "slug", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Date", name: "date", widget: "datetime", required: false}
+      - {label: "Content", name: "body", widget: "markdown"}
+      - {label: "URL", name: "url", widget: "string", required: false}
+
+  - name: "people"
+    label: "People"
+    folder: "data/people"
+    create: true
+    slug: "{{slug}}"
+    format: "frontmatter"
+    extension: "md"
+    fields:
+      - {label: "Name", name: "name", widget: "string"}
+      - {label: "Slug", name: "slug", widget: "string"}
+      - {label: "Title/Role", name: "title", widget: "string", required: false}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Email", name: "email", widget: "string", required: false}
+      - {label: "Content", name: "body", widget: "markdown"}
+      - {label: "URL", name: "url", widget: "string", required: false}

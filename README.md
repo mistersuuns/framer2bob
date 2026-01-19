@@ -60,21 +60,45 @@ If the download script doesn't work well, try these tools:
 - **HTTrack** - Desktop tool for mirroring websites
 - **NoCodeExport** - Service for exporting no-code sites
 
+## Updating Content
+
+Since CMS content is now static HTML, you have two options:
+
+### Option 1: Update in Framer, then Re-download (Recommended)
+
+1. Make your changes in Framer (update CMS content, pages, etc.)
+2. Publish your changes in Framer
+3. Run the update script:
+   ```bash
+   ./update-content.sh https://mongooseproject.org/
+   ```
+4. Review changes: `git diff site/`
+5. Commit and push:
+   ```bash
+   git add site/
+   git commit -m "Update site content"
+   git push origin main
+   ```
+
+### Option 2: Edit HTML Files Directly
+
+For small text changes, you can edit HTML files directly:
+
+1. Find the file in `site/` directory (e.g., `site/index.html`, `site/about-the-project.html`)
+2. Edit the HTML content directly
+3. Test locally by opening the file in a browser
+4. Commit and push:
+   ```bash
+   git add site/
+   git commit -m "Update content: [description]"
+   git push origin main
+   ```
+
+**Note:** HTML files from Framer can be complex. For major changes, it's easier to update in Framer and re-download.
+
 ## Manual Deployment
 
-To update your site:
-
-1. Re-download from your Framer site URL
-2. Files will be in the `site/` directory
-3. Commit and push:
-
-```bash
-git add site/
-git commit -m "Update site"
-git push origin main
-```
-
-GitHub Actions will automatically build and deploy your site.
+GitHub Actions will automatically build and deploy your site on every push to `main`.
 
 ## Custom Domain
 

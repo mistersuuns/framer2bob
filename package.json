@@ -1,0 +1,24 @@
+{
+  "name": "framer-site",
+  "version": "1.0.0",
+  "description": "This repository hosts a Framer site on GitHub Pages with automatic deployment.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mistersuuns/framer2bob.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/mistersuuns/framer2bob/issues"
+  },
+  "homepage": "https://github.com/mistersuuns/framer2bob#readme",
+  "dependencies": {
+    "cheerio": "^1.1.2"
+  }
+}

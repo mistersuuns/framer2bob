@@ -1,0 +1,61 @@
+backend:
+  name: github
+  repo: mistersuuns/framer2bob # Path to your GitHub repo
+  branch: main # Branch to update (optional; defaults to master)
+  # Note: For GitHub Pages, you may need an OAuth proxy
+  # See: https://decapcms.org/docs/authentication-backends/#github-backend
+
+# Uncomment below to enable drafts
+# publish_mode: editorial_workflow
+
+media_folder: "site/images/uploads" # Media files will be stored in the repo under images/uploads
+public_folder: "/images/uploads" # The src attribute for uploaded media will begin with /images/uploads
+
+collections:
+  - name: "publications" # Used in routes, e.g., /admin/collections/publications
+    label: "Publications" # Used in the UI
+    folder: "data/publications" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    format: "frontmatter" # Use frontmatter format
+    extension: "md" # File extension
+    fields: # The fields for each document, usually in front matter
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Slug", name: "slug", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Year", name: "year", widget: "number", required: false}
+      - {label: "Authors", name: "authors", widget: "list", default: []}
+      - {label: "Content", name: "body", widget: "markdown"}
+      - {label: "URL", name: "url", widget: "string", required: false}
+      - {label: "Category", name: "category", widget: "string", default: "publication"}
+
+  - name: "news" # Used in routes, e.g., /admin/collections/news
+    label: "News" # Used in the UI
+    folder: "data/news" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template
+    format: "frontmatter"
+    extension: "md"
+    fields: # The fields for each document
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Slug", name: "slug", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Date", name: "date", widget: "datetime", required: false}
+      - {label: "Content", name: "body", widget: "markdown"}
+      - {label: "URL", name: "url", widget: "string", required: false}
+
+  - name: "people" # Used in routes, e.g., /admin/collections/people
+    label: "People" # Used in the UI
+    folder: "data/people" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template
+    format: "frontmatter"
+    extension: "md"
+    fields: # The fields for each document
+      - {label: "Name", name: "name", widget: "string"}
+      - {label: "Slug", name: "slug", widget: "string"}
+      - {label: "Title/Role", name: "title", widget: "string", required: false}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Email", name: "email", widget: "string", required: false}
+      - {label: "Content", name: "body", widget: "markdown"}
+      - {label: "URL", name: "url", widget: "string", required: false}

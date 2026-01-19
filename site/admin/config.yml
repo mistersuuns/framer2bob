@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: mistersuuns/framer2bob # Path to your GitHub repo
+  repo: mistersuuns/mongooseproject # Path to your GitHub repo
   branch: main # Branch to update (optional; defaults to master)
   # Note: For GitHub Pages, you may need an OAuth proxy
   # See: https://decapcms.org/docs/authentication-backends/#github-backend

@@ -4,18 +4,27 @@ This repository hosts a Framer site on GitHub Pages with automatic deployment.
 
 ## Quick Start
 
-### 1. Export from Framer
+**Note:** Framer Sites doesn't have a built-in export feature. We'll download your published site instead.
 
-1. Open your Framer project
-2. Go to **File → Export → Export Site**
-3. Choose **"Export as HTML"** or **"Export as ZIP"**
-4. Extract the exported files if you downloaded a ZIP
+### 1. Download Your Framer Site
 
-### 2. Add Your Framer Site Files
+1. Get your published Framer site URL (e.g., `https://yoursite.framer.website`)
+2. Run the download script:
+   ```bash
+   ./download-site.sh https://yoursite.framer.website
+   ```
+   
+   Or manually download using `wget`:
+   ```bash
+   wget --recursive --page-requisites --html-extension --convert-links --domains yoursite.framer.website --no-parent -P site/ https://yoursite.framer.website
+   ```
 
-1. Copy all exported files from Framer into the `site/` directory
-2. Make sure `index.html` is in the root of the `site/` directory
-3. Commit and push to GitHub:
+### 2. Review and Commit
+
+1. Check the downloaded files in the `site/` directory
+2. Make sure `index.html` exists in the root of the `site/` directory
+3. Test locally by opening `site/index.html` in a browser
+4. Commit and push to GitHub:
 
 ```bash
 git add site/
@@ -44,12 +53,19 @@ framer-site/
 └── README.md
 ```
 
+## Alternative: Using Export Tools
+
+If the download script doesn't work well, try these tools:
+- **ToStatic** (https://tostatic.framer.ai) - Browser extension for exporting
+- **HTTrack** - Desktop tool for mirroring websites
+- **NoCodeExport** - Service for exporting no-code sites
+
 ## Manual Deployment
 
-If you prefer to deploy manually:
+To update your site:
 
-1. Export your site from Framer
-2. Copy files to the `site/` directory
+1. Re-download from your Framer site URL
+2. Files will be in the `site/` directory
 3. Commit and push:
 
 ```bash
@@ -71,11 +87,15 @@ To use a custom domain:
 ## Troubleshooting
 
 - **404 errors**: Make sure `index.html` is in the `site/` directory root
-- **Assets not loading**: Check that all asset paths are relative (not absolute)
+- **Assets not loading**: Check that all asset paths are relative (not absolute). You may need to manually fix broken links after download
+- **Download fails**: Install wget: `brew install wget` (macOS) or use HTTrack
+- **Dynamic features broken**: Framer's CMS, forms, and server-side features won't work in static export. Only static content will be preserved
 - **Deployment fails**: Check the Actions tab in GitHub for error details
 
 ## Notes
 
 - The site is deployed from the `site/` directory
 - GitHub Pages supports static HTML, CSS, and JavaScript
-- Make sure all paths in your Framer export are relative paths
+- **Limitations**: Dynamic Framer features (CMS, forms, animations) may not work after static export
+- Download tools may not capture all interactive elements perfectly
+- You may need to manually fix broken links or missing assets after download

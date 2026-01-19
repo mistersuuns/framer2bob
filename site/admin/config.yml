@@ -2,7 +2,10 @@ backend:
   name: github
   repo: mistersuuns/mongooseproject # Path to your GitHub repo
   branch: main # Branch to update (optional; defaults to master)
-  proxy_url: https://netlify-cms-oauth-provider-node.vercel.app # OAuth proxy for GitHub Pages
+  base_url: https://mistersuuns.github.io # Your site URL
+  auth_scope: repo # GitHub OAuth scope
+  # Note: For GitHub Pages, you need to deploy your own OAuth proxy
+  # Or switch to Netlify hosting for built-in OAuth
 
 # Uncomment below to enable drafts
 # publish_mode: editorial_workflow

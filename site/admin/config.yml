@@ -5,18 +5,18 @@ backend:
 # Uncomment below to enable drafts
 # publish_mode: editorial_workflow
 
-media_folder: "site/images/uploads"
-public_folder: "/images/uploads"
+media_folder: "site/images/uploads" # Media files will be stored in the repo under images/uploads
+public_folder: "/images/uploads" # The src attribute for uploaded media will begin with /images/uploads
 
 collections:
-  - name: "publications"
-    label: "Publications"
-    folder: "data/publications"
-    create: true
-    slug: "{{slug}}"
-    format: "frontmatter"
-    extension: "md"
-    fields:
+  - name: "publications" # Used in routes, e.g., /admin/collections/publications
+    label: "Publications" # Used in the UI
+    folder: "data/publications" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    format: "frontmatter" # Use frontmatter format
+    extension: "md" # File extension
+    fields: # The fields for each document, usually in front matter
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Slug", name: "slug", widget: "string"}
       - {label: "Description", name: "description", widget: "text"}
@@ -26,14 +26,14 @@ collections:
       - {label: "URL", name: "url", widget: "string", required: false}
       - {label: "Category", name: "category", widget: "string", default: "publication"}
 
-  - name: "news"
-    label: "News"
-    folder: "data/news"
-    create: true
-    slug: "{{slug}}"
+  - name: "news" # Used in routes, e.g., /admin/collections/news
+    label: "News" # Used in the UI
+    folder: "data/news" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template
     format: "frontmatter"
     extension: "md"
-    fields:
+    fields: # The fields for each document
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Slug", name: "slug", widget: "string"}
       - {label: "Description", name: "description", widget: "text"}
@@ -41,14 +41,14 @@ collections:
       - {label: "Content", name: "body", widget: "markdown"}
       - {label: "URL", name: "url", widget: "string", required: false}
 
-  - name: "people"
-    label: "People"
-    folder: "data/people"
-    create: true
-    slug: "{{slug}}"
+  - name: "people" # Used in routes, e.g., /admin/collections/people
+    label: "People" # Used in the UI
+    folder: "data/people" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template
     format: "frontmatter"
     extension: "md"
-    fields:
+    fields: # The fields for each document
       - {label: "Name", name: "name", widget: "string"}
       - {label: "Slug", name: "slug", widget: "string"}
       - {label: "Title/Role", name: "title", widget: "string", required: false}

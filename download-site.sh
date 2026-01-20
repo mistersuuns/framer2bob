@@ -26,10 +26,11 @@ if command -v wget &> /dev/null; then
     mkdir -p "$OUTPUT_DIR"
     
     # Download with wget (mirror mode)
+    # Use --timestamping to check for updates, but allow overwriting
     wget \
         --recursive \
         --level=inf \
-        --no-clobber \
+        --timestamping \
         --page-requisites \
         --html-extension \
         --convert-links \
@@ -42,10 +43,19 @@ if command -v wget &> /dev/null; then
     }
     
     # Move files to site root if they're in a subdirectory
-    if [ -d "$OUTPUT_DIR/$(echo $SITE_URL | sed -E 's|https?://([^/]+)||')" ]; then
-        SUBDIR="$OUTPUT_DIR/$(echo $SITE_URL | sed -E 's|https?://([^/]+)||')"
-        mv "$SUBDIR"/* "$OUTPUT_DIR/" 2>/dev/null || true
-        rmdir "$SUBDIR" 2>/dev/null || true
+    # Handle both / and domain-based subdirectories
+    DOMAIN=$(echo $SITE_URL | sed -E 's|https?://([^/]+).*|\1|')
+    if [ -d "$OUTPUT_DIR/$DOMAIN" ]; then
+        echo "📁 Moving files from subdirectory to root..."
+        mv "$OUTPUT_DIR/$DOMAIN"/* "$OUTPUT_DIR/" 2>/dev/null || true
+        rmdir "$OUTPUT_DIR/$DOMAIN" 2>/dev/null || true
+    fi
+    # Also check for path-based subdirectories
+    URL_PATH=$(echo $SITE_URL | sed -E 's|https?://[^/]+(.*)|\1|' | sed 's|^/||' | sed 's|/$||')
+    if [ -n "$URL_PATH" ] && [ -d "$OUTPUT_DIR/$URL_PATH" ]; then
+        echo "📁 Moving files from path subdirectory to root..."
+        mv "$OUTPUT_DIR/$URL_PATH"/* "$OUTPUT_DIR/" 2>/dev/null || true
+        rmdir "$OUTPUT_DIR/$URL_PATH" 2>/dev/null || true
     fi
     
 elif command -v curl &> /dev/null; then

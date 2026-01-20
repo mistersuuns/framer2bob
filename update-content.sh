@@ -18,6 +18,12 @@ if [ -d "site" ] && [ "$(ls -A site)" ]; then
     echo "   Backup created: $BACKUP_DIR"
 fi
 
+# Remove old site files (except admin/ and .gitkeep) to force fresh download
+echo "🧹 Cleaning old site files (keeping admin/ and .gitkeep)..."
+if [ -d "site" ]; then
+    find site -mindepth 1 -maxdepth 1 ! -name "admin" ! -name ".gitkeep" ! -name ".nojekyll" -exec rm -rf {} +
+fi
+
 # Download fresh content
 echo ""
 ./download-site.sh "$SITE_URL"

@@ -1,11 +1,10 @@
 ---
-title: "Reproductive control via eviction (but not the threat of eviction) in banded mongooses - Banded Mongoose"
+title: "Reproductive control via eviction (but not the threat of eviction) in banded mongooses"
 slug: "reproductive-control-via-eviction-(but-not-the-threat-of-eviction)-in-banded-mongooses"
 description: "The Banded Mongoose Research Project consists of a team of researchers working in Uganda, Exeter and Liverpool in the UK. The main project is based at the University of Exeter (Penryn Campus) and is directed by Professor Michael Cant."
-year: null
-authors: ["Feargus Cooney","Leela Channer"]
-url: "/pubs-news-ppl/reproductive-control-via-eviction-(but-not-the-threat-of-eviction)-in-banded-mongooses.html"
+year: 2010
+authors: ["‹ Hodge, S. J., Bell, M. B. V., Cant, M. A."]
+url: "/pubs-news-ppl/reproductive-control-via-eviction-(but-not-the-threat-of-eviction)-in-banded-mongooses"
 category: "publication"
 ---
 
-html body { background: rgb(255, 255, 255); }Banded MongooseResearch ProjectAboutPeopleResearch Themes<p class="framer-text framer-styles-preset-1emaxkn" data-styles-preset="asLM1OgIt" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-540f948a-a814-

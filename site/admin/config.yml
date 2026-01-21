@@ -62,3 +62,23 @@ collections:
       - {label: "Order", name: "order", widget: "number", required: false, hint: "Lower numbers appear first. Leave blank to use default sorting (alphabetically by name)."}
       - {label: "Content", name: "body", widget: "markdown"}
       - {label: "URL", name: "url", widget: "string", required: false}
+
+  - name: "images" # Used in routes, e.g., /admin/collections/images
+    label: "Images" # Used in the UI
+    folder: "data/images" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template
+    format: "frontmatter"
+    extension: "md"
+    sortable_fields: ["title", "category", "date"] # Fields available for sorting in CMS
+    fields: # The fields for each document
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Slug", name: "slug", widget: "string"}
+      - {label: "Image", name: "image", widget: "image", required: true}
+      - {label: "Alt Text", name: "alt", widget: "string", required: false, hint: "Description for screen readers and SEO"}
+      - {label: "Caption", name: "caption", widget: "text", required: false}
+      - {label: "Category", name: "category", widget: "string", required: false, hint: "e.g., research, team, field-work, etc."}
+      - {label: "Date", name: "date", widget: "datetime", required: false}
+      - {label: "Photographer/Credit", name: "credit", widget: "string", required: false}
+      - {label: "Description", name: "description", widget: "text", required: false}
+      - {label: "Order", name: "order", widget: "number", required: false, hint: "Lower numbers appear first. Leave blank to use default sorting (by date, then title)."}

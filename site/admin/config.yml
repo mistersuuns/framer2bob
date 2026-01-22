@@ -17,6 +17,7 @@ collections:
     format: "frontmatter" # Use frontmatter format
     extension: "md" # File extension
     sortable_fields: ["year", "title", "authors", "category"] # Fields available for sorting in CMS
+    summary: "{{title}} - {{year}} - {{authors}}" # Display multiple fields in list view
     fields: # The fields for each document, usually in front matter
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Slug", name: "slug", widget: "string"}
@@ -36,6 +37,7 @@ collections:
     format: "frontmatter"
     extension: "md"
     sortable_fields: ["date", "title"] # Fields available for sorting in CMS
+    summary: "{{title}} - {{date}}" # Display multiple fields in list view
     fields: # The fields for each document
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Slug", name: "slug", widget: "string"}
@@ -52,14 +54,16 @@ collections:
     slug: "{{slug}}" # Filename template
     format: "frontmatter"
     extension: "md"
-    sortable_fields: ["name", "title"] # Fields available for sorting in CMS
+    sortable_fields: ["name", "title", "section", "order"] # Fields available for sorting in CMS
+    summary: "{{name}} - {{title}}" # Display multiple fields in list view
     fields: # The fields for each document
       - {label: "Name", name: "name", widget: "string"}
       - {label: "Slug", name: "slug", widget: "string"}
-      - {label: "Title/Role", name: "title", widget: "string", required: false}
+      - {label: "Title/Role", name: "title", widget: "string", required: false, hint: "Used for grouping into sections (e.g., 'Principal Investigator', 'Postdoc', 'Field Team')"}
+      - {label: "Section/Group", name: "section", widget: "string", required: false, hint: "Optional: Override section grouping. If blank, uses Title/Role for grouping."}
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Email", name: "email", widget: "string", required: false}
-      - {label: "Order", name: "order", widget: "number", required: false, hint: "Lower numbers appear first. Leave blank to use default sorting (alphabetically by name)."}
+      - {label: "Order", name: "order", widget: "number", required: false, hint: "Order within section. Lower numbers appear first. Leave blank to sort alphabetically by name within section."}
       - {label: "Content", name: "body", widget: "markdown"}
       - {label: "URL", name: "url", widget: "string", required: false}
 
@@ -71,6 +75,7 @@ collections:
     format: "frontmatter"
     extension: "md"
     sortable_fields: ["title", "category", "date"] # Fields available for sorting in CMS
+    summary: "{{title}} - {{category}} - {{date}}" # Display multiple fields in list view
     fields: # The fields for each document
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Slug", name: "slug", widget: "string"}

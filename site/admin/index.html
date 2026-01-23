@@ -30,6 +30,23 @@
     .invitation-message a:hover {
       color: #00a896;
     }
+    /* Style for injected signup button */
+    .decapbridge-signup-btn {
+      width: 100%;
+      background: #00c7b7 !important;
+      color: white !important;
+      padding: 12px 24px !important;
+      border: none !important;
+      border-radius: 4px !important;
+      font-size: 16px !important;
+      font-weight: 600 !important;
+      cursor: pointer !important;
+      margin-bottom: 16px !important;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    }
+    .decapbridge-signup-btn:hover {
+      background: #00a896 !important;
+    }
   </style>
 </head>
 <body>
@@ -41,5 +58,70 @@
   <div id="nc-root"></div>
   <!-- Include the script that builds the page and powers Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js" defer></script>
+  <script>
+    // Wait for DecapBridge login form to render, then inject signup button
+    function injectSignupButton() {
+      // Look for the login button in various possible locations
+      const selectors = [
+        'button[type="submit"]',
+        'button:contains("Log in")',
+        'button:contains("Sign in")',
+        'form button',
+        '[data-testid="login-button"]',
+        '.nc-authPage-button',
+        'form > button'
+      ];
+      
+      let loginButton = null;
+      let loginForm = null;
+      
+      // Try to find login button
+      for (const selector of selectors) {
+        const buttons = document.querySelectorAll('button');
+        for (const btn of buttons) {
+          const text = btn.textContent.toLowerCase();
+          if (text.includes('log') || text.includes('sign in') || text.includes('login')) {
+            loginButton = btn;
+            loginForm = btn.closest('form') || btn.parentElement;
+            break;
+          }
+        }
+        if (loginButton) break;
+      }
+      
+      // If we found a login button, inject signup button above it
+      if (loginButton && !document.querySelector('.decapbridge-signup-btn')) {
+        const signupBtn = document.createElement('button');
+        signupBtn.type = 'button';
+        signupBtn.className = 'decapbridge-signup-btn';
+        signupBtn.textContent = 'Create Password / Sign Up';
+        signupBtn.onclick = function() {
+          window.location.href = 'https://auth.decapbridge.com/sites/6924f3be-3af2-4b74-af00-7582d5a4e36c/pkce?signup=true';
+        };
+        
+        // Insert before login button
+        loginButton.parentElement.insertBefore(signupBtn, loginButton);
+      }
+    }
+    
+    // Try to inject button after page loads
+    window.addEventListener('load', function() {
+      // Try multiple times as DecapBridge might load async
+      setTimeout(injectSignupButton, 500);
+      setTimeout(injectSignupButton, 1000);
+      setTimeout(injectSignupButton, 2000);
+      setTimeout(injectSignupButton, 3000);
+    });
+    
+    // Also watch for DOM changes (DecapBridge might render dynamically)
+    const observer = new MutationObserver(function(mutations) {
+      injectSignupButton();
+    });
+    
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  </script>
 </body>
 </html>

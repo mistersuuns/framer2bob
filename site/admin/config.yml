@@ -25,9 +25,6 @@ auth:
   last_name_claim: last_name
   avatar_url_claim: avatar_url
 
-# Better Decap + Bridge logo (optional)
-logo_url: https://decapbridge.com/decapcms-with-bridge.svg
-
 # Uncomment below to enable drafts
 # publish_mode: editorial_workflow
 

@@ -11,17 +11,17 @@
       font-size: 14px;
       color: #1e293b;
       text-align: center;
-      margin: 0 0 10px 0;
+      margin: 0 0 6px 0;
       max-width: 520px;
     }
     .decapbridge-signup-wrap {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      margin: 0 0 12px 0;
+      align-items: stretch;
+      margin: 0 0 6px 0;
     }
     .decapbridge-signup-btn {
-      width: fit-content !important;
+      width: 100% !important;
       max-width: 100% !important;
       display: inline-flex !important;
       align-items: center !important;
@@ -85,7 +85,7 @@
 
         const copy = document.createElement('div');
         copy.className = 'decapbridge-invite-copy';
-        copy.textContent = "You've been invited to edit mongooseproject.org cms. Create a password and sign in here.";
+        copy.innerHTML = "You've been invited to edit mongooseproject.org cms.<br>Create a password and sign in here.";
 
         const signupBtn = document.createElement('button');
         signupBtn.type = 'button';

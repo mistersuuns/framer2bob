@@ -11,48 +11,34 @@
   <!-- Include the script that builds the page and powers Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
+    // Initialize Identity widget
     if (window.netlifyIdentity) {
-      // Wait for widget to be ready
+      // Initialize with API URL
+      window.netlifyIdentity.init({
+        APIUrl: 'https://mistersuuns.space/.netlify/identity'
+      });
+      
       window.netlifyIdentity.on("init", user => {
         if (!user) {
           const hash = window.location.hash;
           
-          // Check for invitation token
           if (hash.includes('invite_token=')) {
-            // Extract the token
-            const tokenMatch = hash.match(/invite_token=([^&]+)/);
-            
-            if (tokenMatch) {
-              // Open signup modal - the widget should detect the token
-              // and show password setup form instead of registration form
+            // When invite_token is present, the widget should automatically
+            // show password setup form. Don't interfere - just let it handle it.
+            // But we may need to trigger it explicitly
+            setTimeout(() => {
+              // Try opening signup - widget should detect token and show password setup
               window.netlifyIdentity.open('signup');
-            } else {
-              window.netlifyIdentity.open('login');
-            }
+            }, 200);
           } else {
             window.netlifyIdentity.open('login');
           }
         }
       });
       
-      // After successful signup/login
       window.netlifyIdentity.on("login", () => {
         window.location.hash = '';
       });
-    } else {
-      // Widget not loaded, check again after a delay
-      setTimeout(function() {
-        if (window.netlifyIdentity) {
-          const hash = window.location.hash;
-          if (hash.includes('invite_token=')) {
-            window.netlifyIdentity.on("init", user => {
-              if (!user) {
-                window.netlifyIdentity.open('signup');
-              }
-            });
-          }
-        }
-      }, 1000);
     }
   </script>
 </body>

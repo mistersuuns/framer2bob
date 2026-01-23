@@ -14,7 +14,7 @@
       --spacing-xl: 1.5rem;    /* 24px */
     }
 
-    /* Reduce Decap logo size - aggressive targeting */
+    /* Hide Decap logo/icon completely */
     #nc-root img,
     #nc-root svg,
     img[src*="decap"],
@@ -27,19 +27,19 @@
     [class*="nc-authPage-header"] img,
     [class*="nc-authPage-header"] svg,
     header img,
-    header svg {
-      max-height: 2rem !important;
-      max-width: 12rem !important;
-      height: auto !important;
-      width: auto !important;
+    header svg,
+    [class*="nc-authPage-header"] {
+      display: none !important;
+      visibility: hidden !important;
     }
     
-    /* Target Decap text specifically */
+    /* Hide Decap text/heading */
     #nc-root [class*="nc-authPage"] h1,
     #nc-root [class*="nc-authPage"] [class*="title"],
-    #nc-root [class*="nc-authPage-header"] {
-      font-size: 1.25rem !important;
-      line-height: 1.5 !important;
+    #nc-root [class*="nc-authPage-header"] h1,
+    #nc-root [class*="nc-authPage-header"] [class*="title"] {
+      display: none !important;
+      visibility: hidden !important;
     }
 
     /* Invitation message - gap to signup button */

@@ -28,9 +28,6 @@ auth:
 # Better Decap + Bridge logo (optional)
 logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 
-# Add site links in Decap CMS (optional)
-site_url: https://mistersuuns.space
-
 # Uncomment below to enable drafts
 # publish_mode: editorial_workflow
 

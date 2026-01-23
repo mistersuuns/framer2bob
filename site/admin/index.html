@@ -5,26 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
   <style>
-    .signup-link {
+    .invitation-message {
       position: fixed;
       top: 20px;
-      right: 20px;
-      background: #00c7b7;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 4px;
-      text-decoration: none;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #f0f9ff;
+      border: 2px solid #00c7b7;
+      border-radius: 8px;
+      padding: 16px 24px;
       z-index: 10000;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 14px;
+      color: #1e293b;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      text-align: center;
     }
-    .signup-link:hover {
-      background: #00a896;
+    .invitation-message a {
+      color: #00c7b7;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+    .invitation-message a:hover {
+      color: #00a896;
     }
   </style>
 </head>
 <body>
-  <!-- Signup link for first-time users -->
-  <a href="https://auth.decapbridge.com/sites/6924f3be-3af2-4b74-af00-7582d5a4e36c/pkce?signup=true" class="signup-link">Sign Up / Set Password</a>
+  <!-- Invitation message for first-time users -->
+  <div class="invitation-message">
+    You've been invited to edit mongooseproject.org cms. Create a password and sign in <a href="https://auth.decapbridge.com/sites/6924f3be-3af2-4b74-af00-7582d5a4e36c/pkce?signup=true">here</a>.
+  </div>
   <!-- Mount point for Decap CMS -->
   <div id="nc-root"></div>
   <!-- Include the script that builds the page and powers Decap CMS -->

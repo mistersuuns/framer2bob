@@ -6,13 +6,9 @@
   <title>Content Manager</title>
 </head>
 <body>
+  <!-- Mount point for Decap CMS -->
+  <div id="nc-root"></div>
   <!-- Include the script that builds the page and powers Decap CMS -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <script>
-    // Ensure CMS initializes properly
-    if (typeof CMS !== 'undefined') {
-      CMS.init();
-    }
-  </script>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js" defer></script>
 </body>
 </html>

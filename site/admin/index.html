@@ -42,26 +42,29 @@
       line-height: 1.5 !important;
     }
 
-    /* Invitation message */
+    /* Invitation message - gap to signup button */
     .decapbridge-invite-copy {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       font-size: 0.875rem; /* 14px */
       color: #1e293b;
       text-align: center;
-      margin: 0 0 calc(var(--spacing-lg) * 2) 0 !important; /* 36px bottom - 200% increase */
+      margin: 0 !important;
+      margin-bottom: 1.125rem !important; /* 18px - base gap */
+      padding: 0 !important;
       max-width: 32.5rem; /* 520px */
     }
 
-    /* Wrapper - accounts for parent padding/margins */
+    /* Wrapper - zero out all spacing, account for parent padding */
     .decapbridge-signup-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      margin: 0;
-      padding: 0;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: stretch !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      gap: 0 !important;
     }
 
-    /* Signup button - 10px gap to login button below */
+    /* Signup button - gap to login is HALF of text-to-signup gap (9px = 18px/2) */
     .decapbridge-signup-btn {
       width: 100% !important;
       display: inline-flex !important;
@@ -75,7 +78,8 @@
       font-size: 1rem !important; /* 16px */
       font-weight: 600 !important;
       cursor: pointer !important;
-      margin: 0 0 var(--spacing-md) 0 !important; /* 10px bottom gap to login */
+      margin: 0 !important;
+      margin-bottom: 0.5625rem !important; /* 9px = half of 18px */
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
     }
 
@@ -83,10 +87,35 @@
       background: #00a896 !important;
     }
 
-    /* Ensure login button has no top margin to respect our 10px gap */
-    .decapbridge-signup-wrap + * button[type="submit"],
-    .decapbridge-signup-wrap ~ button[type="submit"] {
+    /* Systematically remove ALL spacing from login button and its containers */
+    .decapbridge-signup-wrap + *,
+    .decapbridge-signup-wrap ~ * {
       margin-top: 0 !important;
+      padding-top: 0 !important;
+    }
+    
+    .decapbridge-signup-wrap + * button,
+    .decapbridge-signup-wrap ~ button,
+    .decapbridge-signup-wrap + form button,
+    .decapbridge-signup-wrap ~ form button {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      padding-top: 0 !important;
+    }
+    
+    /* Target login button specifically - remove all spacing */
+    button[type="submit"]:not(.decapbridge-signup-btn) {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    }
+    
+    /* Remove spacing from any parent containers */
+    .decapbridge-signup-wrap + form,
+    .decapbridge-signup-wrap ~ form,
+    form:has(.decapbridge-signup-wrap) {
+      margin: 0 !important;
+      padding: 0 !important;
+      gap: 0 !important;
     }
   </style>
 </head>

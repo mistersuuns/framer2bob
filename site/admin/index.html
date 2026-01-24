@@ -182,7 +182,8 @@
         signupBtn.className = 'decapbridge-signup-btn';
         signupBtn.textContent = 'Create Password / Sign Up';
         signupBtn.onclick = function() {
-          window.location.href = 'https://auth.decapbridge.com/sites/6924f3be-3af2-4b74-af00-7582d5a4e36c/pkce?signup=true';
+          // Go straight to DecapBridge's signup (create account) screen for this site
+          window.location.href = 'https://decapbridge.com/auth/signup?site_id=6924f3be-3af2-4b74-af00-7582d5a4e36c&site_name=mongooseproject';
         };
 
         wrap.appendChild(copy);

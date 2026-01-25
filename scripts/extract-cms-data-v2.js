@@ -193,8 +193,7 @@ function extractPersonDetails(htmlPath, name) {
         // Bio usually starts with phrases like "My research", "I study", "The project", etc.
         const bioStartPhrases = ['my research', 'i study', 'the project', 'our research', 'we study', 'i aim', 'my work'];
         
-        // Find name position and search after it
-        const nameIndex = html.indexOf(name);
+        // Find name position and search after it (reuse nameIndex from above)
         if (nameIndex !== -1) {
             const afterName = html.substring(nameIndex + name.length, nameIndex + 5000);
             

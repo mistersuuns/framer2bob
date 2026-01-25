@@ -4,7 +4,8 @@
   "description": "Banded Mongoose Research Project website hosted on GitHub Pages with Decap CMS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node scripts/build-site.js"
   },
   "repository": {
     "type": "git",

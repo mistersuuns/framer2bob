@@ -1,6 +1,6 @@
 [build]
-  # Force Netlify to treat this as a static site: no build step, just publish `site/`
-  command = ""
+  # Build step injects CMS content into static HTML
+  command = "npm run build"
   publish = "site"
 
 [build.environment]

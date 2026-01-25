@@ -390,18 +390,18 @@ function extractTitlesFromPeoplePage() {
                 }
             }
             
-            // Also try h6 pattern for Alumni section - but be more careful
+            // Also try h6 pattern for Alumni section - but be VERY strict
             // Structure: link ... h6 (name) ... h6 (separator or empty) ... h6 (title)
-            const linkMatches2 = Array.from(html.matchAll(/href="\.\/pubs-news-ppl\/([^"]+)"/g));
+            // Only match if the h6 tags are within the same link block (before closing </a>)
+            const linkMatches2 = Array.from(html.matchAll(/href="\.\/pubs-news-ppl\/([^"]+)">([\s\S]{0,1500}?)<\/a>/g));
             for (const linkMatch of linkMatches2) {
                 const slug = linkMatch[1];
                 if (titlesMap[slug]) continue; // Don't overwrite
                 
-                const linkIdx = linkMatch.index;
-                const window = html.substring(linkIdx, linkIdx + 2000);
+                const linkBlock = linkMatch[2]; // Content between <a> and </a>
                 
-                // Find all h6 tags in this window
-                const h6Matches = Array.from(window.matchAll(/<h6[^>]*>([^<]+)<\/h6>/g));
+                // Find all h6 tags within this link block only
+                const h6Matches = Array.from(linkBlock.matchAll(/<h6[^>]*>([^<]+)<\/h6>/g));
                 const h6Texts = h6Matches.map(m => m[1].trim());
                 
                 if (h6Texts.length >= 3) {

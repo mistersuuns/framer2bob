@@ -374,13 +374,8 @@ function extractPeople(searchIndex, siteDir) {
             if (isKnownPerson || looksLikePerson) {
                 // Try to extract title and bio from HTML file
                 const htmlPath = path.join(siteDir, 'pubs-news-ppl', `${slug}.html`);
-                let { title, bio } = extractPersonDetails(htmlPath, name);
+                const { title, bio } = extractPersonDetails(htmlPath, name);
 
-                // Fallback for Mike Cant if extraction fails (e.g. site connectivity issues)
-                if (slug === 'mike-cant' && (!title || !bio)) {
-                    if (!title) title = "Professor of Evolutionary Biology";
-                    if (!bio) bio = "My research aims to understand patterns of behaviour and life history in social animals, particularly animals that exhibit cooperative behaviour, such as the banded mongoose. Building on some pioneering research in the 70s and early 90s, I started the current phase of the Banded Mongoose Research Project in 1995 for my PhD research, with the help of Francis Mwanguhya who is now the Field Manager. The project has grown in size and complexity over the years, not least because banded mongooses have turned out to be ideal for testing theories about cooperation and conflict, early life influences on health and behaviour, and how the features of a society shape an animal’s life history. They are also unusual in many respects – males live longer than females, females synchronise birth to the same day, and males form one-to-one relationships with pups that are not their own, to name just three. Our research on how and why these patterns occur has contributed to a better understanding of the lives and behaviour of animals that live in families and groups.";
-                }
 
                 people.push({
                     id: slug,

@@ -151,9 +151,12 @@ function extractPersonDetails(htmlPath, name) {
                 .trim();
             
             // Only accept if it looks like a title (not just a name)
+            // Check if it's different from the person's name and contains title-like words
+            const isJustName = cleaned === name || cleaned.match(/^[A-Z][a-z]+\s+[A-Z][a-z]+$/);
+            const hasTitleKeywords = /professor|doctor|dr\.|phd|researcher|manager|investigator|postdoc|assistant/i.test(cleaned);
+            
             if (cleaned.length > 5 && cleaned.length < 100 && 
-                cleaned !== name && 
-                !cleaned.match(/^[A-Z][a-z]+\s+[A-Z][a-z]+$/)) { // Not just "First Last"
+                (!isJustName || hasTitleKeywords)) {
                 title = cleaned;
             }
         }
@@ -201,8 +204,11 @@ function extractPersonDetails(htmlPath, name) {
                             .trim();
 
                         // Only accept if it looks like a real title
+                        // Reject if it contains common description phrases (not a title)
+                        const isDescription = /working in|based at|consists of|directed by|research project/i.test(cleaned);
                         const isValidTitle = cleaned.length > 5 &&
                             cleaned.length < 100 &&
+                            !isDescription &&
                             !cleaned.match(/\.(woff|woff2|ttf|css|js|png|jpg|gif)/i) &&
                             !cleaned.match(/url\(|font-|display:|swap|style:|content:|meta/i) &&
                             !cleaned.includes('var(') &&
@@ -237,8 +243,11 @@ function extractPersonDetails(htmlPath, name) {
                     for (const match of matches) {
                         const cleaned = match.replace(/[<>{}[\]&;]/g, ' ').replace(/\s+/g, ' ').trim();
                         // Only accept if it looks like a real title
+                        // Reject if it contains common description phrases (not a title)
+                        const isDescription = /working in|based at|consists of|directed by|research project/i.test(cleaned);
                         const isValidTitle = cleaned.length > 10 &&
                             cleaned.length < 100 &&
+                            !isDescription &&
                             !cleaned.match(/\.(woff|woff2|ttf|css|js|png|jpg|gif)/i) &&
                             !cleaned.match(/url\(|font-|display:|swap|style:/i) &&
                             cleaned.match(/^[A-Za-z\s,\.\-'()]+$/);

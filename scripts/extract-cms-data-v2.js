@@ -140,68 +140,97 @@ function extractPersonDetails(htmlPath, name) {
     try {
         const html = fs.readFileSync(htmlPath, 'utf8');
 
-        // Extract title/role - search for common academic titles
-        // Since HTML is minified, search for title patterns in the raw text
-        const titleKeywords = [
-            'Professor of',
-            'Assistant Professor',
-            'Postdoc',
-            'Field Manager',
-            'Principal Investigator'
-        ];
+        // Strategy 1: Extract from h1 tag (most reliable - this is the actual page title)
+        const h1Match = html.match(/<h1[^>]*>([^<]+)<\/h1>/i);
+        if (h1Match) {
+            const h1Title = h1Match[1].trim();
+            // Clean up: remove " - Banded Mongoose" or similar suffixes
+            const cleaned = h1Title
+                .replace(/\s*-\s*Banded Mongoose.*$/i, '')
+                .replace(/\s*-\s*Mongooseproject.*$/i, '')
+                .trim();
+            
+            // Only accept if it looks like a title (not just a name)
+            if (cleaned.length > 5 && cleaned.length < 100 && 
+                cleaned !== name && 
+                !cleaned.match(/^[A-Z][a-z]+\s+[A-Z][a-z]+$/)) { // Not just "First Last"
+                title = cleaned;
+            }
+        }
 
-        // Try to find title near the name (within 2000 chars)
-        const nameIndex = html.indexOf(name);
-        if (nameIndex !== -1) {
-            // Look for text between name and bio start phrases
-            // Widen search window to catch titles that appear after some HTML structure
-            const searchWindow = html.substring(nameIndex + name.length, nameIndex + name.length + 3000);
+        // Strategy 2: If no h1, try to find title near the name using keywords
+        if (!title) {
+            const titleKeywords = [
+                'Professor of',
+                'Assistant Professor',
+                'Postdoc',
+                'Field Manager',
+                'Principal Investigator',
+                'Dr.',
+                'PhD',
+                'Researcher'
+            ];
 
-            // First, try to find title keywords
-            for (const keyword of titleKeywords) {
-                const keywordIndex = searchWindow.indexOf(keyword);
-                if (keywordIndex !== -1 && keywordIndex < 1000) { // Title should be relatively close
-                    // Extract text starting from keyword, stop at HTML tag, brace, or bio phrase
-                    let titleEnd = keywordIndex + 150;
+            const nameIndex = html.indexOf(name);
+            if (nameIndex !== -1) {
+                // Look for text between name and bio start phrases
+                const searchWindow = html.substring(nameIndex + name.length, nameIndex + name.length + 3000);
 
-                    // Stop at specific HTML tags that usually end a title
-                    const tagStop = searchWindow.substring(keywordIndex).search(/<(\/h[1-6]|div|p|span|br)/i);
-                    if (tagStop !== -1) titleEnd = keywordIndex + tagStop;
+                // Try to find title keywords
+                for (const keyword of titleKeywords) {
+                    const keywordIndex = searchWindow.indexOf(keyword);
+                    if (keywordIndex !== -1 && keywordIndex < 1000) {
+                        // Extract text starting from keyword, stop at HTML tag, brace, or bio phrase
+                        let titleEnd = keywordIndex + 150;
 
-                    // Stop at bio start phrases
-                    for (const phrase of ['my research', 'i study', 'the project', 'our research']) {
-                        const phraseIdx = searchWindow.toLowerCase().indexOf(phrase, keywordIndex);
-                        if (phraseIdx !== -1 && phraseIdx < titleEnd) titleEnd = phraseIdx;
-                    }
+                        // Stop at specific HTML tags that usually end a title
+                        const tagStop = searchWindow.substring(keywordIndex).search(/<(\/h[1-6]|div|p|span|br)/i);
+                        if (tagStop !== -1) titleEnd = keywordIndex + tagStop;
 
-                    const extracted = searchWindow.substring(keywordIndex, titleEnd);
-                    // rigorous cleaning
-                    const cleaned = extracted.replace(/[<>{}[\]&;]/g, ' ')
-                        .replace(/\s+/g, ' ')
-                        .replace(/class="[^"]*"/g, '') // remove class attributes if any leaked
-                        .trim();
+                        // Stop at bio start phrases
+                        for (const phrase of ['my research', 'i study', 'the project', 'our research']) {
+                            const phraseIdx = searchWindow.toLowerCase().indexOf(phrase, keywordIndex);
+                            if (phraseIdx !== -1 && phraseIdx < titleEnd) titleEnd = phraseIdx;
+                        }
 
-                    // Only accept if it looks like a real title (no CSS/font code, no URLs, mostly letters/spaces)
-                    const isValidTitle = cleaned.length > 5 &&
-                        cleaned.length < 100 &&
-                        !cleaned.match(/\.(woff|woff2|ttf|css|js|png|jpg|gif)/i) &&
-                        !cleaned.match(/url\(|font-|display:|swap|style:|content:|meta/i) &&
-                        !cleaned.includes('var(') &&
-                        cleaned.match(/[A-Za-z]/); // at least some letters
+                        const extracted = searchWindow.substring(keywordIndex, titleEnd);
+                        // rigorous cleaning
+                        const cleaned = extracted.replace(/[<>{}[\]&;]/g, ' ')
+                            .replace(/\s+/g, ' ')
+                            .replace(/class="[^"]*"/g, '')
+                            .trim();
 
-                    if (isValidTitle) {
-                        title = cleaned;
-                        break;
+                        // Only accept if it looks like a real title
+                        const isValidTitle = cleaned.length > 5 &&
+                            cleaned.length < 100 &&
+                            !cleaned.match(/\.(woff|woff2|ttf|css|js|png|jpg|gif)/i) &&
+                            !cleaned.match(/url\(|font-|display:|swap|style:|content:|meta/i) &&
+                            !cleaned.includes('var(') &&
+                            cleaned.match(/[A-Za-z]/);
+
+                        if (isValidTitle) {
+                            title = cleaned;
+                            break;
+                        }
                     }
                 }
             }
         }
 
-        // Fallback: search entire HTML for title patterns but be stricter
+        // Strategy 3: Fallback - search entire HTML for title patterns but be stricter
         if (!title) {
+            const titleKeywords = [
+                'Professor of',
+                'Assistant Professor',
+                'Postdoc',
+                'Field Manager',
+                'Principal Investigator',
+                'Dr.',
+                'PhD',
+                'Researcher'
+            ];
+            
             for (const keyword of titleKeywords) {
-                // Use word boundary \b to avoid matching within other words (though keywords usually have spaces)
-                // Remove 'i' flag if necessary, but keep it for now as keywords are specific enough
                 const pattern = new RegExp(`\\b${keyword}[^<>{}\\[\\]]{0,60}`, 'i');
                 const matches = html.match(pattern);
                 if (matches && matches.length > 0) {
@@ -227,7 +256,8 @@ function extractPersonDetails(htmlPath, name) {
         // Bio usually starts with phrases like "My research", "I study", "The project", etc.
         const bioStartPhrases = ['my research', 'i study', 'the project', 'our research', 'we study', 'i aim', 'my work'];
 
-        // Find name position and search after it (reuse nameIndex from above)
+        // Find name position and search after it
+        const nameIndex = html.indexOf(name);
         if (nameIndex !== -1) {
             const afterName = html.substring(nameIndex + name.length, nameIndex + 5000);
 

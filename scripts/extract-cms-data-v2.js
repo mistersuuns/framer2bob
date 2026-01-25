@@ -147,23 +147,42 @@ function extractPersonDetails(htmlPath, name) {
         // Try to find title near the name (within 2000 chars)
         const nameIndex = html.indexOf(name);
         if (nameIndex !== -1) {
-            const searchWindow = html.substring(nameIndex, nameIndex + 2000);
+            // Look for text between name and bio start phrases
+            const searchWindow = html.substring(nameIndex + name.length, nameIndex + name.length + 2000);
             
+            // First, try to find title keywords
             for (const keyword of titleKeywords) {
                 const keywordIndex = searchWindow.indexOf(keyword);
-                if (keywordIndex !== -1) {
-                    // Extract text starting from keyword, up to 100 chars or next tag/brace
-                    const titleStart = keywordIndex;
-                    const titleEnd = Math.min(
-                        titleStart + 100,
-                        searchWindow.length,
-                        searchWindow.indexOf('<', titleStart) !== -1 ? searchWindow.indexOf('<', titleStart) : searchWindow.length,
-                        searchWindow.indexOf('{', titleStart) !== -1 ? searchWindow.indexOf('{', titleStart) : searchWindow.length
-                    );
-                    const extracted = searchWindow.substring(titleStart, titleEnd);
+                if (keywordIndex !== -1 && keywordIndex < 500) { // Title should be close to name
+                    // Extract text starting from keyword, stop at HTML tag, brace, or bio phrase
+                    let titleEnd = keywordIndex + 150;
+                    
+                    // Stop at HTML tags
+                    const tagIndex = searchWindow.indexOf('<', keywordIndex);
+                    if (tagIndex !== -1 && tagIndex < titleEnd) titleEnd = tagIndex;
+                    
+                    // Stop at braces
+                    const braceIndex = searchWindow.indexOf('{', keywordIndex);
+                    if (braceIndex !== -1 && braceIndex < titleEnd) titleEnd = braceIndex;
+                    
+                    // Stop at bio start phrases
+                    for (const phrase of ['my research', 'i study', 'the project']) {
+                        const phraseIdx = searchWindow.toLowerCase().indexOf(phrase, keywordIndex);
+                        if (phraseIdx !== -1 && phraseIdx < titleEnd) titleEnd = phraseIdx;
+                    }
+                    
+                    const extracted = searchWindow.substring(keywordIndex, titleEnd);
                     const cleaned = extracted.replace(/[<>{}[\]&;]/g, ' ').replace(/\s+/g, ' ').trim();
                     
-                    if (cleaned.length > 5 && cleaned.length < 100) {
+                    // Only accept if it looks like a real title (no CSS/font code, no URLs, mostly letters/spaces)
+                    const isValidTitle = cleaned.length > 5 && 
+                                         cleaned.length < 100 &&
+                                         !cleaned.match(/\.(woff|woff2|ttf|css|js|png|jpg|gif)/i) &&
+                                         !cleaned.match(/url\(|font-|display:|swap|style:|content:|meta/i) &&
+                                         cleaned.match(/^[A-Za-z\s,\.\-'()]+$/) &&
+                                         !cleaned.toLowerCase().includes('banded mongoose research project');
+                    
+                    if (isValidTitle) {
                         title = cleaned;
                         break;
                     }
@@ -179,7 +198,13 @@ function extractPersonDetails(htmlPath, name) {
                 if (matches && matches.length > 0) {
                     for (const match of matches) {
                         const cleaned = match.replace(/[<>{}[\]&;]/g, ' ').replace(/\s+/g, ' ').trim();
-                        if (cleaned.length > 10 && cleaned.length < 100) {
+                        // Only accept if it looks like a real title
+                        const isValidTitle = cleaned.length > 10 && 
+                                           cleaned.length < 100 &&
+                                           !cleaned.match(/\.(woff|woff2|ttf|css|js|png|jpg|gif)/i) &&
+                                           !cleaned.match(/url\(|font-|display:|swap|style:/i) &&
+                                           cleaned.match(/^[A-Za-z\s,\.\-'()]+$/);
+                        if (isValidTitle) {
                             title = cleaned;
                             break;
                         }

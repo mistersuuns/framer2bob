@@ -348,7 +348,11 @@ function extractTitlesFromPeoplePage() {
         const peoplePageUrl = 'https://mongooseproject.org/people';
         const tempFile = path.join(dataDir, 'people-page-temp.html');
         
-        execSync(`curl -sL "${peoplePageUrl}" -o "${tempFile}"`, { stdio: 'pipe' });
+        try {
+            execSync(`curl -sL "${peoplePageUrl}" -o "${tempFile}"`, { stdio: 'pipe', encoding: 'utf8' });
+        } catch (e) {
+            throw new Error(`Failed to download People page: ${e.message}`);
+        }
         
         if (fs.existsSync(tempFile)) {
             const html = fs.readFileSync(tempFile, 'utf8');

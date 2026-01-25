@@ -404,22 +404,38 @@ function extractTitlesFromPeoplePage() {
                 const h6Matches = Array.from(linkBlock.matchAll(/<h6[^>]*>([^<]+)<\/h6>/g));
                 const h6Texts = h6Matches.map(m => m[1].trim());
                 
-                if (h6Texts.length >= 3) {
+                if (h6Texts.length >= 2) {
                     const firstH6 = h6Texts[0]; // Name
                     const secondH6 = h6Texts[1];
-                    let title = h6Texts[2]; // Usually the title
+                    let title = null;
                     
-                    // If second is separator, we already have title in third
-                    // If second looks like a title (not a name), use it
-                    if (secondH6 !== '–' && secondH6 !== '-' && secondH6.length > 2 &&
-                        !secondH6.match(/^[A-Z][a-z]+\s+[A-Z][a-z]+$/) && // Not just a name
-                        !secondH6.includes('@')) {
-                        title = secondH6;
+                    // Case 1: Two h6 tags - first is name, second is title
+                    if (h6Texts.length === 2) {
+                        if (secondH6 !== '–' && secondH6 !== '-' && secondH6.length > 2 &&
+                            !secondH6.match(/^[A-Z][a-z]+\s+[A-Z][a-z]+$/) && // Not just a name
+                            !secondH6.includes('@')) {
+                            title = secondH6;
+                        }
+                    }
+                    // Case 2: Three or more h6 tags - name, separator, title
+                    else if (h6Texts.length >= 3) {
+                        if (secondH6 === '–' || secondH6 === '-') {
+                            // Second is separator, title is in third
+                            title = h6Texts[2];
+                        } else if (secondH6 !== '–' && secondH6 !== '-' && secondH6.length > 2 &&
+                            !secondH6.match(/^[A-Z][a-z]+\s+[A-Z][a-z]+$/) && // Not just a name
+                            !secondH6.includes('@')) {
+                            // Second is the title
+                            title = secondH6;
+                        } else {
+                            // Fallback to third
+                            title = h6Texts[2];
+                        }
                     }
                     
                     // Validate title - must not be a person name
                     // Accept if it contains title keywords OR if it's a valid academic title
-                    const hasTitleKeyword = title.toLowerCase().includes('student') || 
+                    const hasTitleKeyword = title && (title.toLowerCase().includes('student') || 
                          title.toLowerCase().includes('professor') ||
                          title.toLowerCase().includes('researcher') ||
                          title.toLowerCase().includes('fellow') ||
@@ -428,7 +444,7 @@ function extractTitlesFromPeoplePage() {
                          title.toLowerCase().includes('associate') ||
                          title.toLowerCase().includes('phd') ||
                          title.toLowerCase().includes('mres') ||
-                         title.toLowerCase().includes('mbyres');
+                         title.toLowerCase().includes('mbyres'));
                     
                     if (title && 
                         title !== '–' && 

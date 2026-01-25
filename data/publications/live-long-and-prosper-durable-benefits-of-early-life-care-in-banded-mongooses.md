@@ -1,11 +1,9 @@
 ---
-title: "2019 - Live long and prosper: durable benefits of early-life care in banded mongooses"
+title: "Live long and prosper: durable benefits of early-life care in banded mongooses"
 slug: "live-long-and-prosper-durable-benefits-of-early-life-care-in-banded-mongooses"
-description: ""
-year: "2019"
 authors: ["Wells DA, Cant MA, Nichols HJ, Hoffman JI"]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/live-long-and-prosper-durable-benefits-of-early-life-care-in-banded-mongooses"
-category: "publication"
+date: "2019-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/live-long-and-prosper-durable-benefits-of-early-life-care-in-banded-mongooses.pdf"}]
 ---
 

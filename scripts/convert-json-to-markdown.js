@@ -14,21 +14,34 @@ const dataDir = path.join(__dirname, '../data');
 const outputDir = path.join(__dirname, '../data');
 
 function convertPublicationToMarkdown(pub) {
-  // Format title with year prefix: "2021 - Title"
-  const title = pub.year ? `${pub.year} - ${pub.title}` : pub.title;
+  // Match Framer CMS structure EXACTLY: Title, Slug, Authors, Journal, URL, Date, Files & Media, Description, Content
+  const fields = [];
+  fields.push(`title: "${(pub.title || '').replace(/"/g, '\\"')}"`);
+  fields.push(`slug: "${pub.slug}"`);
+  fields.push(`authors: ${JSON.stringify(pub.authors || [])}`);
   
-  const pdfField = pub.pdf ? `pdf: "${pub.pdf.replace(/"/g, '\\"')}"` : '';
-  const doiField = pub.doi ? `doi: "${pub.doi.replace(/"/g, '\\"')}"` : '';
-  const linksField = pub.externalLinks ? `externalLinks: ${JSON.stringify(pub.externalLinks)}` : '';
+  if (pub.journal) {
+    fields.push(`journal: "${pub.journal.replace(/"/g, '\\"')}"`);
+  }
+  if (pub.url) {
+    fields.push(`url: "${pub.url}"`);
+  }
+  if (pub.date || pub.year) {
+    const date = pub.date || (pub.year ? `${pub.year}-01-01T00:00:00.000Z` : null);
+    if (date) fields.push(`date: "${date}"`);
+  }
+  if (pub.files && pub.files.length > 0) {
+    fields.push(`files: ${JSON.stringify(pub.files)}`);
+  } else if (pub.pdf) {
+    // Convert PDF to files array format
+    fields.push(`files: ${JSON.stringify([{file: pub.pdf}])}`);
+  }
+  if (pub.description) {
+    fields.push(`description: "${pub.description.replace(/"/g, '\\"')}"`);
+  }
   
   const frontmatter = `---
-title: "${title.replace(/"/g, '\\"')}"
-slug: "${pub.slug}"
-description: "${(pub.description || '').replace(/"/g, '\\"')}"
-year: "${pub.year || ''}"
-authors: ${JSON.stringify(pub.authors || [])}
-${pdfField ? pdfField + '\n' : ''}${doiField ? doiField + '\n' : ''}${linksField ? linksField + '\n' : ''}url: "${pub.url}"
-category: "${pub.category || 'publication'}"
+${fields.join('\n')}
 ---
 
 `;
@@ -64,13 +77,32 @@ url: "${news.url}"
 }
 
 function convertPersonToMarkdown(person) {
-  const titleField = person.title ? `title: "${person.title.replace(/"/g, '\\"')}"` : '';
+  // Match Framer CMS structure EXACTLY: Title, Slug, Link, Position, Category, Description, Image, URL
+  const fields = [];
+  fields.push(`title: "${(person.title || person.name || '').replace(/"/g, '\\"')}"`);
+  fields.push(`slug: "${person.slug}"`);
+  
+  if (person.link) {
+    fields.push(`link: "${person.link}"`);
+  }
+  if (person.position || person.title) {
+    fields.push(`position: "${(person.position || person.title || '').replace(/"/g, '\\"')}"`);
+  }
+  if (person.category) {
+    fields.push(`category: "${person.category.replace(/"/g, '\\"')}"`);
+  }
+  if (person.description) {
+    fields.push(`description: "${person.description.replace(/"/g, '\\"')}"`);
+  }
+  if (person.image) {
+    fields.push(`image: "${person.image}"`);
+  }
+  if (person.url) {
+    fields.push(`url: "${person.url}"`);
+  }
+  
   const frontmatter = `---
-name: "${person.name.replace(/"/g, '\\"')}"
-slug: "${person.slug}"
-${titleField ? titleField + '\n' : ''}description: "${(person.description || '').replace(/"/g, '\\"')}"
-email: "${person.email || ''}"
-url: "${person.url}"
+${fields.join('\n')}
 ---
 
 `;
@@ -85,8 +117,12 @@ url: "${person.url}"
 // Main conversion
 console.log('🔄 Converting JSON to Markdown files...\n');
 
-// Convert publications
-const pubsFile = path.join(dataDir, 'publications.json');
+// Convert publications - try publications-all-fields.json first, then fallback to publications.json
+let pubsFile = path.join(dataDir, 'publications-all-fields.json');
+if (!fs.existsSync(pubsFile)) {
+  pubsFile = path.join(dataDir, 'publications.json');
+}
+
 if (fs.existsSync(pubsFile)) {
   const publications = JSON.parse(fs.readFileSync(pubsFile, 'utf-8'));
   const pubsDir = path.join(outputDir, 'publications');

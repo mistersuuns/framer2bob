@@ -1,11 +1,8 @@
 ---
-title: "1998 - A model for the evolution of reproductive skew without reproductive suppression"
+title: "A model for the evolution of reproductive skew without reproductive suppression"
 slug: "a-model-for-the-evolution-of-reproductive-skew-without-reproductive-suppression"
-description: ""
-year: "1998"
 authors: ["Johnstone, R. A., Cant, M. A."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/a-model-for-the-evolution-of-reproductive-skew-without-reproductive-suppression"
-category: "publication"
+date: "1998-01-01T00:00:00.000Z"
 ---
 

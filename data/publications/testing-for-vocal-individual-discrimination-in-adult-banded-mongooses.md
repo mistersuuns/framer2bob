@@ -1,11 +1,9 @@
 ---
-title: "2013 - Testing for vocal individual discrimination in adult banded mongooses"
+title: "Testing for vocal individual discrimination in adult banded mongooses"
 slug: "testing-for-vocal-individual-discrimination-in-adult-banded-mongooses"
-description: ""
-year: "2013"
 authors: ["Sanderson, J. L., Young, A. J., Hodge, S. J., Kyabulima, S., Walker, S. L., Cant, M. A."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/testing-for-vocal-individual-discrimination-in-adult-banded-mongooses"
-category: "publication"
+date: "2013-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/testing-for-vocal-individual-discrimination-in-adult-banded-mongooses.pdf"}]
 ---
 

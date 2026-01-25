@@ -1,11 +1,9 @@
 ---
-title: "2008 - Strategic adjustment of begging effort by banded mongoose pups"
+title: "Strategic adjustment of begging effort by banded mongoose pups"
 slug: "strategic-adjustment-of-begging-effort-by-banded-mongoose-pups"
-description: ""
-year: "2008"
 authors: ["Muller, C. A., Bell, M. B. V."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/strategic-adjustment-of-begging-effort-by-banded-mongoose-pups"
-category: "publication"
+date: "2008-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/strategic-adjustment-of-begging-effort-by-banded-mongoose-pups.pdf"}]
 ---
 

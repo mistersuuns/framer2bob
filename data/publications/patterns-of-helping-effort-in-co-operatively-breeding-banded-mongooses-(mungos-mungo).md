@@ -1,11 +1,9 @@
 ---
-title: "2003 - Patterns of helping effort in co-operatively breeding banded mongooses (Mungos mungo)"
+title: "Patterns of helping effort in co-operatively breeding banded mongooses (Mungos mungo)"
 slug: "patterns-of-helping-effort-in-co-operatively-breeding-banded-mongooses-(mungos-mungo)"
-description: ""
-year: "2003"
 authors: ["Otali, E., Gilchrist, J. S."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/patterns-of-helping-effort-in-co-operatively-breeding-banded-mongooses-(mungos-mungo)"
-category: "publication"
+date: "2003-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/patterns-of-helping-effort-in-co-operatively-breeding-banded-mongooses-(mungos-mungo).pdf"}]
 ---
 

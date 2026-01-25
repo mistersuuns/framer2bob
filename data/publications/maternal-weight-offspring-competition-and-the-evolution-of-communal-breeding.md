@@ -1,11 +1,9 @@
 ---
-title: "2009 - Maternal weight, offspring competition and the evolution of communal breeding"
+title: "Maternal weight, offspring competition and the evolution of communal breeding"
 slug: "maternal-weight-offspring-competition-and-the-evolution-of-communal-breeding"
-description: ""
-year: "2009"
 authors: ["Mueller, C. A."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/maternal-weight-offspring-competition-and-the-evolution-of-communal-breeding"
-category: "publication"
+date: "2009-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/maternal-weight-offspring-competition-and-the-evolution-of-communal-breeding.pdf"}]
 ---
 

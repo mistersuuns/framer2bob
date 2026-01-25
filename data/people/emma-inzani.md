@@ -1,9 +1,7 @@
 ---
-name: "Emma Inzani"
-slug: "emma-inzani"
 title: "MbyRes Student"
-description: ""
-email: ""
+slug: "emma-inzani"
+position: "MbyRes Student"
 url: "/pubs-news-ppl/emma-inzani"
 ---
 

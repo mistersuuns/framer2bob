@@ -1,9 +1,7 @@
 ---
-name: "Francis Mwanguhya"
-slug: "field-manager"
 title: "Field Manager"
-description: ""
-email: ""
+slug: "field-manager"
+position: "Field Manager"
 url: "/pubs-news-ppl/field-manager"
 ---
 

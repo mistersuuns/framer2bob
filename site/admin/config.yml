@@ -21,6 +21,9 @@ backend:
 media_folder: "site/images/uploads" # Media files will be stored in the repo under images/uploads
 public_folder: "/images/uploads" # The src attribute for uploaded media will begin with /images/uploads
 
+# PDFs folder for publications
+# PDFs are stored in data/publications/pdfs and served from /publications/pdfs
+
 collections:
   - name: "publications" # Used in routes, e.g., /admin/collections/publications
     label: "Publications" # Used in the UI

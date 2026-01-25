@@ -1,11 +1,9 @@
 ---
-title: "2002 - Female control of paternity in cooperative breeders"
+title: "Female control of paternity in cooperative breeders"
 slug: "female-control-of-paternity-in-cooperative-breeders"
-description: ""
-year: "2002"
 authors: ["Cant, M. A., Johnstone, R. A."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/female-control-of-paternity-in-cooperative-breeders"
-category: "publication"
+date: "2002-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/female-control-of-paternity-in-cooperative-breeders.pdf"}]
 ---
 

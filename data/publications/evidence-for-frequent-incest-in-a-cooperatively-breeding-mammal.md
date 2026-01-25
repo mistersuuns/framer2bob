@@ -1,11 +1,9 @@
 ---
-title: "2014 - Evidence for frequent incest in a cooperatively breeding mammal"
+title: "Evidence for frequent incest in a cooperatively breeding mammal"
 slug: "evidence-for-frequent-incest-in-a-cooperatively-breeding-mammal"
-description: ""
-year: "2014"
 authors: ["Sanderson, J. L., Cant, M. A., Nichols, H. J."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/evidence-for-frequent-incest-in-a-cooperatively-breeding-mammal"
-category: "publication"
+date: "2014-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/evidence-for-frequent-incest-in-a-cooperatively-breeding-mammal.pdf"}]
 ---
 

@@ -1,11 +1,9 @@
 ---
-title: "2012 - Food availability shapes patterns of helping effort in a cooperative mongoose"
+title: "Food availability shapes patterns of helping effort in a cooperative mongoose"
 slug: "food-availability-shapes-patterns-of-helping-effort-in-a-cooperative-mongoose"
-description: ""
-year: "2012"
 authors: ["Bell, M. B. V."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/food-availability-shapes-patterns-of-helping-effort-in-a-cooperative-mongoose"
-category: "publication"
+date: "2012-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/food-availability-shapes-patterns-of-helping-effort-in-a-cooperative-mongoose.pdf"}]
 ---
 

@@ -1,11 +1,9 @@
 ---
-title: "2011 - Inclusive fitness theory and eusociality"
+title: "Inclusive fitness theory and eusociality"
 slug: "inclusive-fitness-theory-and-eusociality"
-description: ""
-year: "2011"
 authors: ["Cant, M. A."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/inclusive-fitness-theory-and-eusociality"
-category: "publication"
+date: "2011-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/inclusive-fitness-theory-and-eusociality.pdf"}]
 ---
 

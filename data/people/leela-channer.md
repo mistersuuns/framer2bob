@@ -1,8 +1,6 @@
 ---
-name: "Leela Channer"
+title: "Leela Channer"
 slug: "leela-channer"
-description: ""
-email: ""
 url: "/pubs-news-ppl/leela-channer"
 ---
 

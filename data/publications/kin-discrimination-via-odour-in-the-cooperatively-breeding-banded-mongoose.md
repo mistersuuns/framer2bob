@@ -1,11 +1,9 @@
 ---
-title: "2018 - Kin discrimination via odour in the cooperatively breeding banded mongoose"
+title: "Kin discrimination via odour in the cooperatively breeding banded mongoose"
 slug: "kin-discrimination-via-odour-in-the-cooperatively-breeding-banded-mongoose"
-description: ""
-year: "2018"
 authors: ["Hares MC, Vitikainen EIK, Marshall HH, Thompson FJ, Blount JD, Cant MA"]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/kin-discrimination-via-odour-in-the-cooperatively-breeding-banded-mongoose"
-category: "publication"
+date: "2018-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/kin-discrimination-via-odour-in-the-cooperatively-breeding-banded-mongoose.pdf"}]
 ---
 

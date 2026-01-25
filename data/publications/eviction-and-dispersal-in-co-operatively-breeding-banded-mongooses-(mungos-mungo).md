@@ -1,11 +1,9 @@
 ---
-title: "2001 - Eviction and dispersal in co-operatively breeding banded mongooses (Mungos mungo)"
+title: "Eviction and dispersal in co-operatively breeding banded mongooses (Mungos mungo)"
 slug: "eviction-and-dispersal-in-co-operatively-breeding-banded-mongooses-(mungos-mungo)"
-description: ""
-year: "2001"
 authors: ["Gilchrist, J. S., Otali, E."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/eviction-and-dispersal-in-co-operatively-breeding-banded-mongooses-(mungos-mungo)"
-category: "publication"
+date: "2001-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/eviction-and-dispersal-in-co-operatively-breeding-banded-mongooses-(mungos-mungo).pdf"}]
 ---
 

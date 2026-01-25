@@ -1,11 +1,9 @@
 ---
-title: "2021 - A veil of ignorance can promote fairness in a mammal society"
+title: "A veil of ignorance can promote fairness in a mammal society"
 slug: "a-veil-of-ignorance-can-promote-fairness-in-a-mammal-society"
-description: ""
-year: "2021"
 authors: ["Green, P. A., Briffa, M., & Cant, M. A."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/a-veil-of-ignorance-can-promote-fairness-in-a-mammal-society"
-category: "publication"
+date: "2021-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/a-veil-of-ignorance-can-promote-fairness-in-a-mammal-society.pdf"}]
 ---
 

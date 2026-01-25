@@ -1,11 +1,9 @@
 ---
-title: "2012 - Sex-biased dispersal, haplodiploidy and the evolution of helping in social insects"
+title: "Sex-biased dispersal, haplodiploidy and the evolution of helping in social insects"
 slug: "sex-biased-dispersal-haplodiploidy-and-the-evolution-of-helping-in-social-insects"
-description: ""
-year: "2012"
 authors: ["Jansen, D. A., Cant, M. A., Manser, M. B."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/sex-biased-dispersal-haplodiploidy-and-the-evolution-of-helping-in-social-insects"
-category: "publication"
+date: "2012-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/sex-biased-dispersal-haplodiploidy-and-the-evolution-of-helping-in-social-insects.pdf"}]
 ---
 

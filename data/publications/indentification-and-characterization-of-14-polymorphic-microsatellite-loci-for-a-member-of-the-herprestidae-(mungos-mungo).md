@@ -1,11 +1,9 @@
 ---
-title: "2003 - Indentification and characterization of 14 polymorphic microsatellite loci for a member of the Herprestidae (Mungos mungo)"
+title: "Indentification and characterization of 14 polymorphic microsatellite loci for a member of the Herprestidae (Mungos mungo)"
 slug: "indentification-and-characterization-of-14-polymorphic-microsatellite-loci-for-a-member-of-the-herprestidae-(mungos-mungo)"
-description: ""
-year: "2003"
 authors: ["Cant, M. A., Otali, E., Mwanguhya, F."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/indentification-and-characterization-of-14-polymorphic-microsatellite-loci-for-a-member-of-the-herprestidae-(mungos-mungo)"
-category: "publication"
+date: "2003-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/indentification-and-characterization-of-14-polymorphic-microsatellite-loci-for-a-member-of-the-herprestidae-(mungos-mungo).pdf"}]
 ---
 

@@ -1,9 +1,7 @@
 ---
-name: "Monil Khera"
-slug: "monil-khera"
 title: "PhD Student"
-description: ""
-email: ""
+slug: "monil-khera"
+position: "PhD Student"
 url: "/pubs-news-ppl/monil-khera"
 ---
 

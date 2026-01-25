@@ -1,11 +1,9 @@
 ---
-title: "2024 - Lifetime trajectories of male mating effort under reproductive conflict in a cooperatively breeding mammal"
+title: "Lifetime trajectories of male mating effort under reproductive conflict in a cooperatively breeding mammal"
 slug: "lifetime-trajectories-of-male-mating-effort-under-reproductive-conflict-in-a-cooperatively-breeding-mammal"
-description: ""
-year: "2024"
 authors: ["Graham Birch, Michael A. Cant, Hazel J. Nichols, Magali Meniri, Robert Businge, Francis Mwanguhya & Jonathan D. Blount"]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/lifetime-trajectories-of-male-mating-effort-under-reproductive-conflict-in-a-cooperatively-breeding-mammal"
-category: "publication"
+date: "2024-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/lifetime-trajectories-of-male-mating-effort-under-reproductive-conflict-in-a-cooperatively-breeding-mammal.pdf"}]
 ---
 

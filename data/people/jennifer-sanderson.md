@@ -1,9 +1,7 @@
 ---
-name: "Jennifer Sanderson"
-slug: "jennifer-sanderson"
 title: "Postdoctoral Research Associate"
-description: ""
-email: ""
+slug: "jennifer-sanderson"
+position: "Postdoctoral Research Associate"
 url: "/pubs-news-ppl/jennifer-sanderson"
 ---
 

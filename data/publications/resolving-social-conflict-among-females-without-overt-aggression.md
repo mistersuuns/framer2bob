@@ -1,11 +1,9 @@
 ---
-title: "2013 - Resolving social conflict among females without overt aggression"
+title: "Resolving social conflict among females without overt aggression"
 slug: "resolving-social-conflict-among-females-without-overt-aggression"
-description: ""
-year: "2013"
 authors: ["Port, M., Cant, M. A."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/resolving-social-conflict-among-females-without-overt-aggression"
-category: "publication"
+date: "2013-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/resolving-social-conflict-among-females-without-overt-aggression.pdf"}]
 ---
 

@@ -114,8 +114,9 @@ function extractPublications(searchIndex, peopleSlugs, newsSlugs) {
                 description = ''; // Remove generic boilerplate
             }
 
-            // Extract PDF/file links and other metadata from HTML
+            // Extract PDF/file links and download PDFs
             let pdfUrl = null;
+            let pdfLocalPath = null;
             let doi = null;
             let externalLinks = [];
             
@@ -124,32 +125,77 @@ function extractPublications(searchIndex, peopleSlugs, newsSlugs) {
                 try {
                     const html = fs.readFileSync(htmlPath, 'utf8');
                     
-                    // Extract all external links
-                    const allLinks = Array.from(html.matchAll(/href="([^"]+)"/g));
-                    for (const match of allLinks) {
-                        const href = match[1];
-                        if (href.startsWith('http')) {
-                            externalLinks.push(href);
-                            
-                            // Check for PDF (prioritize direct PDF links)
-                            if (!pdfUrl && (href.includes('.pdf') || href.toLowerCase().includes('download'))) {
-                                pdfUrl = href;
-                            }
-                            
-                            // Check for DOI (prioritize doi.org links)
-                            if (!doi && href.includes('doi.org')) {
-                                doi = href;
-                            }
-                        }
+                    // Extract ALL possible file references from HTML
+                    // Look for href, data-src, data-file, download attributes, and any URL patterns
+                    const linkPatterns = [
+                        /href="([^"]+)"/g,
+                        /data-src="([^"]+)"/g,
+                        /data-file="([^"]+)"/g,
+                        /src="([^"]+)"/g,
+                        /download="([^"]+)"/g,
+                        /url\(["']?([^"')]+)["']?\)/g
+                    ];
+                    
+                    const allUrls = new Set();
+                    for (const pattern of linkPatterns) {
+                        const matches = Array.from(html.matchAll(pattern));
+                        matches.forEach(m => {
+                            if (m[1]) allUrls.add(m[1]);
+                        });
                     }
                     
-                    // Also check for relative PDF links
-                    if (!pdfUrl) {
-                        const relativePdfMatch = html.match(/href="([^"]+\.pdf[^"]*)"/i);
-                        if (relativePdfMatch) {
-                            pdfUrl = relativePdfMatch[1];
+                    // Also look for any .pdf strings in the HTML (might be in JavaScript or data attributes)
+                    const pdfMentions = Array.from(html.matchAll(/[^"'\s]*\.pdf[^"'\s]*/gi));
+                    pdfMentions.forEach(m => {
+                        if (m[0] && !m[0].includes(' ')) allUrls.add(m[0]);
+                    });
+                    
+                    // Process all found URLs
+                    for (const url of allUrls) {
+                        // Check for PDF links
+                        if (!pdfUrl && (url.includes('.pdf') || url.toLowerCase().includes('pdf'))) {
+                            pdfUrl = url;
+                            // Make absolute if relative
                             if (pdfUrl.startsWith('/')) {
                                 pdfUrl = `https://mongooseproject.org${pdfUrl}`;
+                            } else if (!pdfUrl.startsWith('http')) {
+                                pdfUrl = `https://mongooseproject.org/${pdfUrl}`;
+                            }
+                            
+                            // Download the PDF
+                            try {
+                                const pdfsDir = path.join(dataDir, 'publications', 'pdfs');
+                                if (!fs.existsSync(pdfsDir)) {
+                                    fs.mkdirSync(pdfsDir, { recursive: true });
+                                }
+                                
+                                const pdfFilename = `${slug}.pdf`;
+                                const pdfPath = path.join(pdfsDir, pdfFilename);
+                                
+                                // Download using curl
+                                execSync(`curl -sL "${pdfUrl}" -o "${pdfPath}"`, { stdio: 'pipe' });
+                                
+                                if (fs.existsSync(pdfPath) && fs.statSync(pdfPath).size > 0) {
+                                    pdfLocalPath = `publications/pdfs/${pdfFilename}`;
+                                    console.log(`  ✅ Downloaded PDF: ${pdfFilename}`);
+                                    break; // Found and downloaded, stop looking
+                                } else {
+                                    // Delete if download failed
+                                    if (fs.existsSync(pdfPath)) fs.unlinkSync(pdfPath);
+                                }
+                            } catch (downloadError) {
+                                // PDF download failed, but keep the URL
+                                console.warn(`  ⚠️  Could not download PDF from ${pdfUrl}: ${downloadError.message}`);
+                            }
+                        }
+                        
+                        // Check for external links
+                        if (url.startsWith('http')) {
+                            externalLinks.push(url);
+                            
+                            // Check for DOI (prioritize doi.org links)
+                            if (!doi && url.includes('doi.org')) {
+                                doi = url;
                             }
                         }
                     }
@@ -173,7 +219,8 @@ function extractPublications(searchIndex, peopleSlugs, newsSlugs) {
                 year: year ? String(year) : null,
                 authors: validAuthors,
                 url: url,
-                pdf: pdfUrl || null,
+                pdf: pdfLocalPath || pdfUrl || null, // Prefer local path, fallback to URL
+                pdfUrl: pdfUrl || null, // Keep original URL for reference
                 doi: doi || null,
                 externalLinks: externalLinks.length > 0 ? externalLinks : null,
                 date: year ? `${year}-01-01` : null,

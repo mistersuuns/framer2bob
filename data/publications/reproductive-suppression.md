@@ -1,11 +1,9 @@
 ---
-title: "2015 - Reproductive suppression"
+title: "Reproductive suppression"
 slug: "reproductive-suppression"
-description: ""
-year: "2015"
 authors: ["Cant, M. A., Young, A. J."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/reproductive-suppression"
-category: "publication"
+date: "2015-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/reproductive-suppression.pdf"}]
 ---
 

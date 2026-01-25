@@ -1,11 +1,9 @@
 ---
-title: "2017 - Biased escorts: offspring sex, not relatedness explains alloparental care patterns in a cooperative breeder"
+title: "Biased escorts: offspring sex, not relatedness explains alloparental care patterns in a cooperative breeder"
 slug: "biased-escorts-offspring-sex-not-relatedness-explains-alloparental-care-patterns-in-a-cooperative-breeder"
-description: ""
-year: "2017"
 authors: ["Thompson FJ, Marshall HH, Vitikainen EIK, Cant MA"]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/biased-escorts-offspring-sex-not-relatedness-explains-alloparental-care-patterns-in-a-cooperative-breeder"
-category: "publication"
+date: "2017-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/biased-escorts-offspring-sex-not-relatedness-explains-alloparental-care-patterns-in-a-cooperative-breeder.pdf"}]
 ---
 

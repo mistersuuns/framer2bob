@@ -1,11 +1,9 @@
 ---
-title: "2013 - Longevity suppresses conflict in animal societies"
+title: "Longevity suppresses conflict in animal societies"
 slug: "longevity-suppresses-conflict-in-animal-societies"
-description: ""
-year: "2013"
 authors: ["Cant, M. A., Vitikainen, E., Nichols, H. J."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/longevity-suppresses-conflict-in-animal-societies"
-category: "publication"
+date: "2013-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/longevity-suppresses-conflict-in-animal-societies.pdf"}]
 ---
 

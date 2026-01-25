@@ -1,11 +1,9 @@
 ---
-title: "2006 - Escalated conflict in a social hierarchy"
+title: "Escalated conflict in a social hierarchy"
 slug: "escalated-conflict-in-a-social-hierarchy"
-description: ""
-year: "2006"
 authors: ["Buston, P. M., Cant, M. A."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/escalated-conflict-in-a-social-hierarchy"
-category: "publication"
+date: "2006-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/escalated-conflict-in-a-social-hierarchy.pdf"}]
 ---
 

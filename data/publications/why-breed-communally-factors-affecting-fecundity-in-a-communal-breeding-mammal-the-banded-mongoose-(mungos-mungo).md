@@ -1,11 +1,9 @@
 ---
-title: "2004 - Why breed communally? Factors affecting fecundity in a communal breeding mammal: the banded mongoose (Mungos mungo)"
+title: "Why breed communally? Factors affecting fecundity in a communal breeding mammal: the banded mongoose (Mungos mungo)"
 slug: "why-breed-communally-factors-affecting-fecundity-in-a-communal-breeding-mammal-the-banded-mongoose-(mungos-mungo)"
-description: ""
-year: "2004"
 authors: ["Cant, M. A."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/why-breed-communally-factors-affecting-fecundity-in-a-communal-breeding-mammal-the-banded-mongoose-(mungos-mungo)"
-category: "publication"
+date: "2004-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/why-breed-communally-factors-affecting-fecundity-in-a-communal-breeding-mammal-the-banded-mongoose-(mungos-mungo).pdf"}]
 ---
 

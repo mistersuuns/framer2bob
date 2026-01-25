@@ -1,11 +1,9 @@
 ---
-title: "2007 - Who cares? Individual contributions to pup care by breeders vs non-breeders in the cooperatively breeding banded mongoose (Mungos Mungo)"
+title: "Who cares? Individual contributions to pup care by breeders vs non-breeders in the cooperatively breeding banded mongoose (Mungos Mungo)"
 slug: "who-cares-individual-contributions-to-pup-care-by-breeders-vs-non-breeders-in-the-cooperatively-breeding-banded-mongoose-(mungos-mungo)"
-description: ""
-year: "2007"
 authors: ["Hodge, S. J."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/who-cares-individual-contributions-to-pup-care-by-breeders-vs-non-breeders-in-the-cooperatively-breeding-banded-mongoose-(mungos-mungo)"
-category: "publication"
+date: "2007-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/who-cares-individual-contributions-to-pup-care-by-breeders-vs-non-breeders-in-the-cooperatively-breeding-banded-mongoose-(mungos-mungo).pdf"}]
 ---
 

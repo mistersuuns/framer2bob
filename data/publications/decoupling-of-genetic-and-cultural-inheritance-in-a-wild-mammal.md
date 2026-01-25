@@ -1,11 +1,9 @@
 ---
-title: "2018 - Decoupling of Genetic and Cultural Inheritance in a Wild Mammal"
+title: "Decoupling of Genetic and Cultural Inheritance in a Wild Mammal"
 slug: "decoupling-of-genetic-and-cultural-inheritance-in-a-wild-mammal"
-description: ""
-year: "2018"
 authors: ["Sheppard CE, Inger R, McDonald RA, Barker S, Jackson AL, Thompson FJ, Vitikainen EIK, Cant MA, Marshall HH"]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/decoupling-of-genetic-and-cultural-inheritance-in-a-wild-mammal"
-category: "publication"
+date: "2018-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/decoupling-of-genetic-and-cultural-inheritance-in-a-wild-mammal.pdf"}]
 ---
 

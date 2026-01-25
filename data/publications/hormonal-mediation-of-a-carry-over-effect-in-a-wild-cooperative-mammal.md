@@ -1,11 +1,9 @@
 ---
-title: "2014 - Hormonal mediation of a carry-over effect in a wild cooperative mammal"
+title: "Hormonal mediation of a carry-over effect in a wild cooperative mammal"
 slug: "hormonal-mediation-of-a-carry-over-effect-in-a-wild-cooperative-mammal"
-description: ""
-year: "2014"
 authors: ["Nichols, J. J., Jordan, N. R., Jamie, G. A., Cant, M. A., Hoffman, J. I."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/hormonal-mediation-of-a-carry-over-effect-in-a-wild-cooperative-mammal"
-category: "publication"
+date: "2014-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/hormonal-mediation-of-a-carry-over-effect-in-a-wild-cooperative-mammal.pdf"}]
 ---
 

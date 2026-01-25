@@ -1,11 +1,9 @@
 ---
-title: "2007 - Reproductive skew and the evolution of group dissolution tactics: a synthesis of concession and restraint models"
+title: "Reproductive skew and the evolution of group dissolution tactics: a synthesis of concession and restraint models"
 slug: "reproductive-skew-and-the-evolution-of-group-dissolution-tactics-a-synthesis-of-concession-and-restraint-models"
-description: ""
-year: "2007"
 authors: ["Cant, M. A., English, S., Reeve, H. K., Field, J."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/reproductive-skew-and-the-evolution-of-group-dissolution-tactics-a-synthesis-of-concession-and-restraint-models"
-category: "publication"
+date: "2007-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/reproductive-skew-and-the-evolution-of-group-dissolution-tactics-a-synthesis-of-concession-and-restraint-models.pdf"}]
 ---
 

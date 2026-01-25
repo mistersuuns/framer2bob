@@ -1,11 +1,9 @@
 ---
-title: "2000 - Social control of reproduction in banded mongooses"
+title: "Social control of reproduction in banded mongooses"
 slug: "social-control-of-reproduction-in-banded-mongooses"
-description: ""
-year: "2000"
 authors: ["Cant, M. A., Johnstone, R. A."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/social-control-of-reproduction-in-banded-mongooses"
-category: "publication"
+date: "2000-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/social-control-of-reproduction-in-banded-mongooses.pdf"}]
 ---
 

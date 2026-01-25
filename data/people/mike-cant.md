@@ -1,9 +1,7 @@
 ---
-name: "Michael Cant"
-slug: "mike-cant"
 title: "Professor of Evolutionary Biology"
-description: ""
-email: ""
+slug: "mike-cant"
+position: "Professor of Evolutionary Biology"
 url: "/pubs-news-ppl/mike-cant"
 ---
 

@@ -1,11 +1,9 @@
 ---
-title: "2010 - The role of threats in animal cooperation"
+title: "The role of threats in animal cooperation"
 slug: "the-role-of-threats-in-animal-cooperation"
-description: ""
-year: "2010"
 authors: ["Cant, M. A., Johnstone, R. A."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/the-role-of-threats-in-animal-cooperation"
-category: "publication"
+date: "2010-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/the-role-of-threats-in-animal-cooperation.pdf"}]
 ---
 

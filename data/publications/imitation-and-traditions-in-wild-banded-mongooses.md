@@ -1,11 +1,9 @@
 ---
-title: "2010 - Imitation and traditions in wild banded mongooses"
+title: "Imitation and traditions in wild banded mongooses"
 slug: "imitation-and-traditions-in-wild-banded-mongooses"
-description: ""
-year: "2010"
 authors: ["Furrer, R. D., Manser, M. B."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/imitation-and-traditions-in-wild-banded-mongooses"
-category: "publication"
+date: "2010-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/imitation-and-traditions-in-wild-banded-mongooses.pdf"}]
 ---
 

@@ -1,11 +1,9 @@
 ---
-title: "2025 - Indirect evidence of an early mating advantage in wild cooperatively breeding male banded mongooses"
+title: "Indirect evidence of an early mating advantage in wild cooperatively breeding male banded mongooses"
 slug: "indirect-evidence-of-an-early-mating-advantage-in-wild-cooperatively-breeding-male-banded-mongooses"
-description: ""
-year: "2025"
 authors: ["Monil Khera, Kevin Arbuckle, Francis Mwanguhya, Michael A Cant, Hazel J Nichols"]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/indirect-evidence-of-an-early-mating-advantage-in-wild-cooperatively-breeding-male-banded-mongooses"
-category: "publication"
+date: "2025-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/indirect-evidence-of-an-early-mating-advantage-in-wild-cooperatively-breeding-male-banded-mongooses.pdf"}]
 ---
 

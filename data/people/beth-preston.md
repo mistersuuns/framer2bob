@@ -1,9 +1,7 @@
 ---
-name: "Beth Preston"
-slug: "beth-preston"
 title: "PhD Student"
-description: ""
-email: ""
+slug: "beth-preston"
+position: "PhD Student"
 url: "/pubs-news-ppl/beth-preston"
 ---
 

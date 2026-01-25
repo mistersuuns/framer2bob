@@ -19,15 +19,21 @@ collections:
     slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
     format: "frontmatter" # Use frontmatter format
     extension: "md" # File extension
-    fields: # The fields for each document, usually in front matter
+    summary: "{{title}} | {{date}} | {{authors}} | {{journal}}" # Table-like summary showing multiple fields
+    sortable_fields: ["title", "date", "authors", "journal"]
+    view_filters:
+      - {label: "All", field: "title", pattern: ".*"}
+      - {label: "Recent", field: "date", pattern: "202[4-9]"}
+    fields: # Match Framer CMS structure EXACTLY: Title, Slug, Authors, Journal, URL, Date, Files & Media, Description, Content
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Slug", name: "slug", widget: "string"}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "Year", name: "year", widget: "number", required: false}
       - {label: "Authors", name: "authors", widget: "list", default: []}
-      - {label: "Content", name: "body", widget: "markdown"}
+      - {label: "Journal", name: "journal", widget: "string", required: false}
       - {label: "URL", name: "url", widget: "string", required: false}
-      - {label: "Category", name: "category", widget: "string", default: "publication"}
+      - {label: "Date", name: "date", widget: "datetime", required: false}
+      - {label: "Files & Media", name: "files", widget: "list", required: false, fields: [{label: "File", name: "file", widget: "file"}]}
+      - {label: "Description", name: "description", widget: "text", required: false}
+      - {label: "Content", name: "body", widget: "markdown", required: false}
 
   - name: "news" # Used in routes, e.g., /admin/collections/news
     label: "News" # Used in the UI
@@ -36,6 +42,11 @@ collections:
     slug: "{{slug}}" # Filename template
     format: "frontmatter"
     extension: "md"
+    summary: "{{title}} | {{date}} | {{description}}" # Table-like summary
+    sortable_fields: ["title", "date"]
+    view_filters:
+      - {label: "All", field: "title", pattern: ".*"}
+      - {label: "Recent", field: "date", pattern: "202[4-9]"}
     fields: # The fields for each document
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Slug", name: "slug", widget: "string"}
@@ -51,11 +62,20 @@ collections:
     slug: "{{slug}}" # Filename template
     format: "frontmatter"
     extension: "md"
-    fields: # The fields for each document
-      - {label: "Name", name: "name", widget: "string"}
+    summary: "{{title}} | {{position}} | {{category}}" # Table-like summary
+    sortable_fields: ["title", "position", "category"]
+    view_filters:
+      - {label: "All", field: "title", pattern: ".*"}
+      - {label: "With Position", field: "position", pattern: ".+"}
+    view_groups:
+      - {label: "By Category", field: "category"}
+      - {label: "By Position", field: "position"}
+    fields: # Match Framer CMS structure EXACTLY
+      - {label: "Title", name: "title", widget: "string"}
       - {label: "Slug", name: "slug", widget: "string"}
-      - {label: "Title/Role", name: "title", widget: "string", required: false}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "Email", name: "email", widget: "string", required: false}
-      - {label: "Content", name: "body", widget: "markdown"}
+      - {label: "Link", name: "link", widget: "string", required: false}
+      - {label: "Position", name: "position", widget: "string", required: false}
+      - {label: "Category", name: "category", widget: "string", required: false}
+      - {label: "Description", name: "description", widget: "text", required: false}
+      - {label: "Image", name: "image", widget: "image", required: false}
       - {label: "URL", name: "url", widget: "string", required: false}

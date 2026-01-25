@@ -1,11 +1,9 @@
 ---
-title: "2012 - Segmental concatenation of individual signatures and context cues in banded mongoose (Mungos mungo) close calls"
+title: "Segmental concatenation of individual signatures and context cues in banded mongoose (Mungos mungo) close calls"
 slug: "segmental-concatenation-of-individual-signatures-and-context-cues-in-banded-mongoose-(mungos-mungo)-close-calls"
-description: ""
-year: "2012"
 authors: ["Cant, M. A."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/segmental-concatenation-of-individual-signatures-and-context-cues-in-banded-mongoose-(mungos-mungo)-close-calls"
-category: "publication"
+date: "2012-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/segmental-concatenation-of-individual-signatures-and-context-cues-in-banded-mongoose-(mungos-mungo)-close-calls.pdf"}]
 ---
 

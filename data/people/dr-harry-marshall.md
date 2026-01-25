@@ -1,9 +1,7 @@
 ---
-name: "Harry Marshall"
-slug: "dr-harry-marshall"
 title: "Associate Research Fellow"
-description: ""
-email: ""
+slug: "dr-harry-marshall"
+position: "Associate Research Fellow"
 url: "/pubs-news-ppl/dr-harry-marshall"
 ---
 

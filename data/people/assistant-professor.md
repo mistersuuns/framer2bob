@@ -1,9 +1,7 @@
 ---
-name: "Patrick Green"
-slug: "assistant-professor"
 title: "Assistant Professor"
-description: ""
-email: ""
+slug: "assistant-professor"
+position: "Assistant Professor"
 url: "/pubs-news-ppl/assistant-professor"
 ---
 

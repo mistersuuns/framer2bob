@@ -1,9 +1,7 @@
 ---
-name: "Dan Franks"
-slug: "professor"
 title: "Professor"
-description: ""
-email: ""
+slug: "professor"
+position: "Professor"
 url: "/pubs-news-ppl/professor"
 ---
 

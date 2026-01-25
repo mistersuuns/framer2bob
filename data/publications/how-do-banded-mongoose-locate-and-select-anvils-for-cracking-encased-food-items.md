@@ -1,11 +1,8 @@
 ---
-title: "2012 - How do banded mongoose locate and select anvils for cracking encased food items?"
+title: "How do banded mongoose locate and select anvils for cracking encased food items?"
 slug: "how-do-banded-mongoose-locate-and-select-anvils-for-cracking-encased-food-items"
-description: ""
-year: "2012"
 authors: ["Nichols, H. J., Amos, W., Bell, M. B. V., Mwanguhya, F., Kyabulima, S., Cant, M. A."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/how-do-banded-mongoose-locate-and-select-anvils-for-cracking-encased-food-items"
-category: "publication"
+date: "2012-01-01T00:00:00.000Z"
 ---
 

@@ -1,11 +1,9 @@
 ---
-title: "2009 - How threats influence the evolutionary resolution of within-group conflict"
+title: "How threats influence the evolutionary resolution of within-group conflict"
 slug: "how-threats-influence-the-evolutionary-resolution-of-within-group-conflict"
-description: ""
-year: "2009"
 authors: ["Johnstone, R. A., Cant, M. A."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/how-threats-influence-the-evolutionary-resolution-of-within-group-conflict"
-category: "publication"
+date: "2009-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/how-threats-influence-the-evolutionary-resolution-of-within-group-conflict.pdf"}]
 ---
 

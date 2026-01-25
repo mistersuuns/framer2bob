@@ -1,11 +1,9 @@
 ---
-title: "2005 - Endogenous timing and competitive interactions among relatives"
+title: "Endogenous timing and competitive interactions among relatives"
 slug: "endogenous-timing-and-competitive-interactions-among-relatives"
-description: ""
-year: "2005"
 authors: ["Cant, M. A., Johnstone, R. A."]
-externalLinks: ["https://fonts.gstatic.com"]
 url: "/pubs-news-ppl/endogenous-timing-and-competitive-interactions-among-relatives"
-category: "publication"
+date: "2005-01-01T00:00:00.000Z"
+files: [{"file":"publications/pdfs/endogenous-timing-and-competitive-interactions-among-relatives.pdf"}]
 ---
 

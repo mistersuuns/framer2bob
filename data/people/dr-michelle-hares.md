@@ -1,9 +1,7 @@
 ---
-name: "Michelle Hares"
-slug: "dr-michelle-hares"
 title: "Postdoctoral Research Associate"
-description: ""
-email: ""
+slug: "dr-michelle-hares"
+position: "Postdoctoral Research Associate"
 url: "/pubs-news-ppl/dr-michelle-hares"
 ---
 

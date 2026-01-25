@@ -3,7 +3,7 @@ backend:
   name: git-gateway
   repo: mistersuuns/mongooseproject
   branch: main
-  gateway_url: https://gateway.decapbridge.com
+  gateway_url: https://gateway.decapbridge.com/git-gateway/github/
 
   # See who did what (optional)
   commit_messages:

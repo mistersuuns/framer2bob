@@ -596,14 +596,20 @@ function extractTitlesFromPeoplePage() {
                     desc = desc.replace(/\[[^\]]*\]/g, '');
                     desc = desc.replace(/"[^"]*"/g, '');
                     desc = desc.replace(/\s+/g, ' ').trim();
-                    // Verify this description is actually for this person (check for person name keywords)
-                    const personName = slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-                    const slugWords = slug.split('-');
+                    // Verify this description is actually for this person
+                    // If there's only one match, it's definitely for this person
+                    // Otherwise, check if description contains person-specific keywords
+                    const slugWords = slug.split('-').filter(w => w.length > 3); // Filter out short words like "of", "the"
                     const hasPersonContext = slugWords.some(word => 
-                        desc.toLowerCase().includes(word) || 
-                        desc.toLowerCase().includes(personName.toLowerCase())
+                        desc.toLowerCase().includes(word)
                     );
-                    if (desc.length > 50 && !desc.match(/^[^a-z]*$/) && (hasPersonContext || descMatches.length === 1)) {
+                    
+                    // Accept if: only one match (definitely for this person) OR has context OR description is very close to slug (< 1000 chars)
+                    const descDistance = slugIdx - (descMatch.index + Math.max(0, slugIdx - 3000));
+                    const isClose = descDistance < 1000;
+                    
+                    if (desc.length > 50 && !desc.match(/^[^a-z]*$/) && 
+                        (descMatches.length === 1 || hasPersonContext || isClose)) {
                         descriptionsMap[slug] = desc;
                     }
                 }

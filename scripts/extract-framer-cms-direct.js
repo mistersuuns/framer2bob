@@ -558,8 +558,11 @@ function extractTitlesFromPeoplePage() {
         // For each slug, find description nearby in HTML
         // Descriptions appear BEFORE the slug in the JSON structure
         for (const slug of allSlugs) {
-            // Find the slug in HTML
-            const slugIdx = html.indexOf(`"${slug}"`) || html.indexOf(`'${slug}'`) || html.indexOf(slug);
+            // Find the slug in HTML - try multiple patterns
+            let slugIdx = html.indexOf(`"${slug}"`);
+            if (slugIdx < 0) slugIdx = html.indexOf(`'${slug}'`);
+            if (slugIdx < 0) slugIdx = html.indexOf(slug);
+            
             if (slugIdx > 0) {
                 // Look for "I am" text within 5000 chars BEFORE the slug (description comes first)
                 const beforeWindow = html.substring(Math.max(0, slugIdx - 5000), slugIdx);

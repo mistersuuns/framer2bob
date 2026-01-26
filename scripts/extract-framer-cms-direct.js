@@ -510,10 +510,11 @@ function extractAllPublications() {
 }
 
 /**
- * Extract titles from People listing page (using same logic as extract-cms-data-v2.js)
+ * Extract titles AND descriptions from People listing page
  */
 function extractTitlesFromPeoplePage() {
     const titlesMap = {};
+    const descriptionsMap = {};
     
     try {
         // Try local file first
@@ -535,7 +536,28 @@ function extractTitlesFromPeoplePage() {
         
         if (!html) {
             console.warn('  ⚠️  Could not get People page');
-            return titlesMap;
+            return { titles: titlesMap, descriptions: descriptionsMap };
+        }
+        
+        // Extract descriptions from People page
+        // Pattern: Name (in link) followed by "I am" or description text
+        const linkMatches = Array.from(html.matchAll(/href="\.\/pubs-news-ppl\/([^"]+)">([\s\S]{0,5000}?)<\/a>/g));
+        for (const linkMatch of linkMatches) {
+            const slug = linkMatch[1];
+            const linkBlock = linkMatch[2];
+            
+            // Find "I am" or description text in the link block
+            const descMatch = linkBlock.match(/(I am[^<]{50,2000})/i);
+            if (descMatch) {
+                let desc = descMatch[1];
+                // Clean up HTML entities and tags
+                desc = desc.replace(/&nbsp;/g, ' ');
+                desc = desc.replace(/<[^>]+>/g, ' ');
+                desc = desc.replace(/\s+/g, ' ').trim();
+                if (desc.length > 50) {
+                    descriptionsMap[slug] = desc;
+                }
+            }
         }
         
         // Strategy 0: Extract from embedded JSON data (most reliable)
@@ -685,10 +707,10 @@ function extractTitlesFromPeoplePage() {
             }
         }
     } catch (e) {
-        console.warn(`⚠️  Error extracting titles from People page: ${e.message}`);
+        console.warn(`⚠️  Error extracting from People page: ${e.message}`);
     }
     
-    return titlesMap;
+    return { titles: titlesMap, descriptions: descriptionsMap };
 }
 
 /**
@@ -697,10 +719,10 @@ function extractTitlesFromPeoplePage() {
 function extractAllPeople() {
     console.log('🔍 Extracting ALL people data from Framer CMS...\n');
     
-    // Get titles from People listing page
-    console.log('📄 Extracting titles from People listing page...');
-    const titlesMap = extractTitlesFromPeoplePage();
-    console.log(`✅ Found ${Object.keys(titlesMap).length} titles from People page\n`);
+    // Get titles and descriptions from People listing page
+    console.log('📄 Extracting titles and descriptions from People listing page...');
+    const { titles: titlesMap, descriptions: descriptionsMap } = extractTitlesFromPeoplePage();
+    console.log(`✅ Found ${Object.keys(titlesMap).length} titles and ${Object.keys(descriptionsMap).length} descriptions from People page\n`);
     
     const people = [];
     const searchIndex = getSearchIndex();
@@ -767,6 +789,14 @@ function extractAllPeople() {
         // Get position - prioritize People page, then HTML extraction
         const position = titlesMap[slug] || allFields.position || null;
         
+        // Get description from People page (most reliable source)
+        const peoplePageDescription = descriptionsMap[slug] || null;
+        if (peoplePageDescription) {
+            description = peoplePageDescription;
+        } else if (content) {
+            description = content;
+        }
+        
         // Build person matching Framer CMS structure EXACTLY: Title, Slug, Link, Position, Category, Description, Image, URL
         const person = {
             id: slug,
@@ -775,10 +805,10 @@ function extractAllPeople() {
             link: allFields.link || null,
             position: position,
             category: allFields.category || null,
-            description: description,
+            description: description || '',
             image: allFields.image || null,
             url: url,
-            body: content // Also include body for markdown conversion
+            body: description || content // Use description as body
         };
         
         people.push(person);

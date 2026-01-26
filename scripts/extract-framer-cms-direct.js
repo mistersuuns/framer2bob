@@ -556,20 +556,26 @@ function extractTitlesFromPeoplePage() {
         });
         
         // For each slug, find description nearby in HTML
+        // Descriptions appear BEFORE the slug in the JSON structure
         for (const slug of allSlugs) {
             // Find the slug in HTML
-            const slugIdx = html.indexOf(slug);
+            const slugIdx = html.indexOf(`"${slug}"`) || html.indexOf(`'${slug}'`) || html.indexOf(slug);
             if (slugIdx > 0) {
-                // Look for "I am" text within 5000 chars after the slug
-                const window = html.substring(slugIdx, slugIdx + 5000);
-                const descMatch = window.match(/(I am[^<]{50,2000})/i);
+                // Look for "I am" text within 5000 chars BEFORE the slug (description comes first)
+                const beforeWindow = html.substring(Math.max(0, slugIdx - 5000), slugIdx);
+                const descMatch = beforeWindow.match(/(I am[^<]{50,2000})/i);
                 if (descMatch) {
                     let desc = descMatch[1];
                     // Clean up HTML entities and tags
                     desc = desc.replace(/&nbsp;/g, ' ');
                     desc = desc.replace(/<[^>]+>/g, ' ');
                     desc = desc.replace(/\s+/g, ' ').trim();
-                    if (desc.length > 50) {
+                    // Remove any JSON artifacts that might be included
+                    desc = desc.replace(/\{[^}]*\}/g, '');
+                    desc = desc.replace(/\[[^\]]*\]/g, '');
+                    desc = desc.replace(/"[^"]*"/g, '');
+                    desc = desc.replace(/\s+/g, ' ').trim();
+                    if (desc.length > 50 && !desc.match(/^[^a-z]*$/)) {
                         descriptionsMap[slug] = desc;
                     }
                 }

@@ -121,17 +121,48 @@ function extractAllFieldsFromHTML(htmlPath, slug) {
             }
         }
         
-        // Extract content - get all paragraph text
-        const pMatches = Array.from(html.matchAll(/<p[^>]*>([^<]+)<\/p>/g));
-        const paragraphs = pMatches.map(m => m[1].trim()).filter(t => 
-            t.length > 20 && 
-            !t.includes('The Banded Mongoose Research Project consists') &&
-            !t.match(/^(About|People|Research|News|Publications|Contact)$/i) &&
-            !t.includes('Mongoose videos by') &&
-            !t.includes('BMPR. All rights reserved')
-        );
-        if (paragraphs.length > 0) {
-            allFields.content = paragraphs.join('\n\n');
+        // Extract content - get ALL text content, not just paragraphs
+        // Framer uses complex HTML structure, so extract from body text
+        const bodyMatch = html.match(/<body[^>]*>([\s\S]+?)<\/body>/);
+        if (bodyMatch) {
+            let body = bodyMatch[1];
+            // Remove scripts and styles
+            body = body.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '');
+            body = body.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '');
+            // Remove navigation/footer patterns
+            body = body.replace(/←\s*Back to Home/gi, '');
+            body = body.replace(/Mongoose videos by[^\n]+/gi, '');
+            body = body.replace(/\d{4} BMPR\. All rights reserved\./gi, '');
+            body = body.replace(/\b(About|People|Research|News|Publications|Contact)\b/gi, '');
+            
+            // Extract all text (remove HTML tags)
+            let text = body.replace(/<[^>]+>/g, ' ');
+            text = text.replace(/\s+/g, ' ').trim();
+            
+            // Extract meaningful sentences (50+ chars) - this gets person bios
+            const sentences = text.match(/[^.!?]{50,}[.!?]/g) || [];
+            if (sentences.length > 0) {
+                let content = sentences.join(' ').trim();
+                // Remove position if it appears at the start (common in person pages)
+                const positionPattern = /^(Professor|Assistant Professor|Lecturer|Field Manager|PhD Student|MRes Student|MbyRes Student|Chair of|Postdoctoral|Associate|Director|Manager)[^.!?]{0,50}[.!?]\s*/i;
+                content = content.replace(positionPattern, '');
+                allFields.content = content.trim();
+            }
+        }
+        
+        // Fallback: also try paragraph extraction for publications
+        if (!allFields.content) {
+            const pMatches = Array.from(html.matchAll(/<p[^>]*>([^<]+)<\/p>/g));
+            const paragraphs = pMatches.map(m => m[1].trim()).filter(t => 
+                t.length > 20 && 
+                !t.includes('The Banded Mongoose Research Project consists') &&
+                !t.match(/^(About|People|Research|News|Publications|Contact)$/i) &&
+                !t.includes('Mongoose videos by') &&
+                !t.includes('BMPR. All rights reserved')
+            );
+            if (paragraphs.length > 0) {
+                allFields.content = paragraphs.join('\n\n');
+            }
         }
         
         // Extract journal from content - journal is often a short paragraph (50-200 chars) with journal names
@@ -727,8 +758,8 @@ function extractAllPeople() {
         content = content.replace(/\n{3,}/g, '\n\n');
         content = content.trim();
         
-        // If description is empty but we have content, use content as description
-        if (!description && content) {
+        // Use content as description for people (their bio)
+        if (content) {
             description = content;
         }
         

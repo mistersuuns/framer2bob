@@ -6,9 +6,10 @@
     "link": null,
     "position": "Professor of Evolutionary Biology",
     "category": null,
-    "description": "",
+    "description": "Professor of Evolutionary Biology My aims to understand patterns of behaviour and life history in social animals, particularly animals that exhibit cooperative behaviour, such as the banded mongoose.  Building on some pioneering in the 70s and early 90s, I started the current phase of the Banded Mongoose Project in 1995 for my PhD , with the help of Francis Mwanguhya who is now the Field Manager.  The project has grown in size and complexity over the years, not least because banded mongooses have turned out to be ideal for testing theories cooperation and conflict, early life influences on health and behaviour, and how the features of a society shape an animal’s life history.  They are also unusual in many respects – males live longer than females, females synchronise birth to the same day, and males form one-to-one relationships with pups that are not their own, to name just three.  Our on how and why these patterns occur has contributed to a better understanding of the lives and behaviour of animals that live in families and groups.",
     "image": null,
-    "url": "/pubs-news-ppl/mike-cant"
+    "url": "/pubs-news-ppl/mike-cant",
+    "body": "Professor of Evolutionary Biology My aims to understand patterns of behaviour and life history in social animals, particularly animals that exhibit cooperative behaviour, such as the banded mongoose.  Building on some pioneering in the 70s and early 90s, I started the current phase of the Banded Mongoose Project in 1995 for my PhD , with the help of Francis Mwanguhya who is now the Field Manager.  The project has grown in size and complexity over the years, not least because banded mongooses have turned out to be ideal for testing theories cooperation and conflict, early life influences on health and behaviour, and how the features of a society shape an animal’s life history.  They are also unusual in many respects – males live longer than females, females synchronise birth to the same day, and males form one-to-one relationships with pups that are not their own, to name just three.  Our on how and why these patterns occur has contributed to a better understanding of the lives and behaviour of animals that live in families and groups."
   },
   {
     "id": "field-manager",
@@ -19,7 +20,8 @@
     "category": null,
     "description": "",
     "image": null,
-    "url": "/pubs-news-ppl/field-manager"
+    "url": "/pubs-news-ppl/field-manager",
+    "body": ""
   },
   {
     "id": "hazel-nichols",
@@ -30,7 +32,8 @@
     "category": null,
     "description": "",
     "image": null,
-    "url": "/pubs-news-ppl/hazel-nichols"
+    "url": "/pubs-news-ppl/hazel-nichols",
+    "body": ""
   },
   {
     "id": "faye-thompson",
@@ -41,7 +44,8 @@
     "category": null,
     "description": "",
     "image": null,
-    "url": "/pubs-news-ppl/faye-thompson"
+    "url": "/pubs-news-ppl/faye-thompson",
+    "body": ""
   },
   {
     "id": "professor",
@@ -52,7 +56,8 @@
     "category": null,
     "description": "",
     "image": null,
-    "url": "/pubs-news-ppl/professor"
+    "url": "/pubs-news-ppl/professor",
+    "body": ""
   },
   {
     "id": "assistant-professor",
@@ -63,7 +68,8 @@
     "category": null,
     "description": "",
     "image": null,
-    "url": "/pubs-news-ppl/assistant-professor"
+    "url": "/pubs-news-ppl/assistant-professor",
+    "body": ""
   },
   {
     "id": "chair-of-evolutionary-population-genetics",
@@ -74,7 +80,8 @@
     "category": null,
     "description": "",
     "image": null,
-    "url": "/pubs-news-ppl/chair-of-evolutionary-population-genetics"
+    "url": "/pubs-news-ppl/chair-of-evolutionary-population-genetics",
+    "body": ""
   },
   {
     "id": "graham-birch",
@@ -85,7 +92,8 @@
     "category": null,
     "description": "",
     "image": null,
-    "url": "/pubs-news-ppl/graham-birch"
+    "url": "/pubs-news-ppl/graham-birch",
+    "body": ""
   },
   {
     "id": "emma-vitikainen",
@@ -96,7 +104,8 @@
     "category": null,
     "description": "",
     "image": null,
-    "url": "/pubs-news-ppl/emma-vitikainen"
+    "url": "/pubs-news-ppl/emma-vitikainen",
+    "body": ""
   },
   {
     "id": "laura-labarge",
@@ -107,7 +116,8 @@
     "category": null,
     "description": "",
     "image": null,
-    "url": "/pubs-news-ppl/laura-labarge"
+    "url": "/pubs-news-ppl/laura-labarge",
+    "body": ""
   },
   {
     "id": "leela-channer",
@@ -118,7 +128,8 @@
     "category": null,
     "description": "",
     "image": null,
-    "url": "/pubs-news-ppl/leela-channer"
+    "url": "/pubs-news-ppl/leela-channer",
+    "body": ""
   },
   {
     "id": "neil-jordan",
@@ -129,7 +140,8 @@
     "category": null,
     "description": "",
     "image": null,
-    "url": "/pubs-news-ppl/neil-jordan"
+    "url": "/pubs-news-ppl/neil-jordan",
+    "body": ""
   },
   {
     "id": "dr-harry-marshall",
@@ -140,7 +152,8 @@
     "category": null,
     "description": "",
     "image": null,
-    "url": "/pubs-news-ppl/dr-harry-marshall"
+    "url": "/pubs-news-ppl/dr-harry-marshall",
+    "body": ""
   },
   {
     "id": "nikita-bedov-panasyuk",
@@ -151,7 +164,8 @@
     "category": null,
     "description": "",
     "image": null,
-    "url": "/pubs-news-ppl/nikita-bedov-panasyuk"
+    "url": "/pubs-news-ppl/nikita-bedov-panasyuk",
+    "body": ""
   },
   {
     "id": "jennifer-sanderson",
@@ -162,7 +176,8 @@
     "category": null,
     "description": "",
     "image": null,
-    "url": "/pubs-news-ppl/jennifer-sanderson"
+    "url": "/pubs-news-ppl/jennifer-sanderson",
+    "body": ""
   },
   {
     "id": "dr-michelle-hares",
@@ -173,7 +188,8 @@
     "category": null,
     "description": "",
     "image": null,
-    "url": "/pubs-news-ppl/dr-michelle-hares"
+    "url": "/pubs-news-ppl/dr-michelle-hares",
+    "body": ""
   },
   {
     "id": "beth-preston",
@@ -184,7 +200,8 @@
     "category": null,
     "description": "",
     "image": null,
-    "url": "/pubs-news-ppl/beth-preston"
+    "url": "/pubs-news-ppl/beth-preston",
+    "body": ""
   },
   {
     "id": "catherine-sheppard",
@@ -195,7 +212,8 @@
     "category": null,
     "description": "",
     "image": null,
-    "url": "/pubs-news-ppl/catherine-sheppard"
+    "url": "/pubs-news-ppl/catherine-sheppard",
+    "body": ""
   },
   {
     "id": "emma-inzani",
@@ -206,7 +224,8 @@
     "category": null,
     "description": "",
     "image": null,
-    "url": "/pubs-news-ppl/emma-inzani"
+    "url": "/pubs-news-ppl/emma-inzani",
+    "body": ""
   },
   {
     "id": "dave-seager",
@@ -217,7 +236,8 @@
     "category": null,
     "description": "",
     "image": null,
-    "url": "/pubs-news-ppl/dave-seager"
+    "url": "/pubs-news-ppl/dave-seager",
+    "body": ""
   },
   {
     "id": "monil-khera",
@@ -228,6 +248,7 @@
     "category": null,
     "description": "",
     "image": null,
-    "url": "/pubs-news-ppl/monil-khera"
+    "url": "/pubs-news-ppl/monil-khera",
+    "body": ""
   }
 ]

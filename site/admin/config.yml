@@ -77,7 +77,7 @@ collections:
     slug: "{{slug}}" # Filename template
     format: "frontmatter"
     extension: "md"
-    summary: "{{title}} | {{position}}" # Title and position only - category mostly empty causes | |
+    summary: "{{title}}" # Title only - position shown in separate column if available
     sortable_fields: ["title", "position", "category"]
     view_filters:
       - {label: "All", field: "title", pattern: ".*"}

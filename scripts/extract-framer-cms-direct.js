@@ -1150,10 +1150,49 @@ function extractAllPeople() {
             }
         }
         
+        // Try to get clean description from live site (cleanest source)
+        if (!description || description.includes('Green Assistant') || description.includes('am an Assistant')) {
+            try {
+                const liveUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
+                const liveHtml = execSync(`curl -sL "${liveUrl}"`, { encoding: 'utf8', stdio: 'pipe' });
+                const bodyMatch = liveHtml.match(/<body[^>]*>([\s\S]+?)<\/body>/);
+                if (bodyMatch) {
+                    let body = bodyMatch[1];
+                    body = body.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '');
+                    body = body.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '');
+                    body = body.replace(/<nav[^>]*>[\s\S]*?<\/nav>/gi, '');
+                    
+                    // Extract paragraphs
+                    const pMatches = Array.from(body.matchAll(/<p[^>]*>([^<]+)<\/p>/g));
+                    const paragraphs = pMatches
+                        .map(m => m[1].trim())
+                        .filter(p => 
+                            p.length > 100 && 
+                            !p.includes('Banded Mongoose Research Project') &&
+                            !p.match(/^(About|People|Research|News|Publications|Contact)$/i) &&
+                            !p.includes('Mongoose videos by') &&
+                            !p.match(/[a-z]+-[a-z]+-[a-z]+/) &&
+                            !p.match(/\b[A-Za-z0-9]{15,}\b/)
+                        );
+                    
+                    if (paragraphs.length > 0) {
+                        let liveDesc = paragraphs.join(' ').trim();
+                        liveDesc = liveDesc.replace(/https?:\/\/framerusercontent\.com\/images\/[^\s"']*/gi, '');
+                        liveDesc = liveDesc.replace(/\s+/g, ' ').trim();
+                        if (liveDesc.length > 100) {
+                            description = liveDesc;
+                        }
+                    }
+                }
+            } catch (e) {
+                // Fall through
+            }
+        }
+        
         // Use clean description from individual page, or use content field, or clean the existing one
         if (cleanDescription && cleanDescription.length > 100) {
             description = cleanDescription;
-        } else if (content && content.length > 100) {
+        } else if (content && content.length > 100 && (!description || description.includes('Green Assistant'))) {
             // Use content field as description (it's usually cleaner)
             let cleanContent = content;
             // Remove image URLs

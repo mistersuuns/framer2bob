@@ -1228,7 +1228,13 @@ function extractAllPeople() {
             // Remove "Green" before positions
             description = description.replace(/\bGreen\s+(Assistant\s+Professor|Professor|Lecturer)/gi, '$1');
             // Remove duplicate position patterns: "Green Assistant Professor am an Assistant Professor" -> "Assistant Professor"
-            description = description.replace(/\b([A-Z][a-z]+\s+)?(Assistant\s+Professor|Professor|Lecturer|PhD\s+Student)[^.!?]{0,50}(am\s+an?\s+)?(Assistant\s+Professor|Professor|Lecturer|PhD\s+Student)/gi, '$2');
+            // Keep the more specific position (Assistant Professor > Professor)
+            description = description.replace(/\b([A-Z][a-z]+\s+)?(Assistant\s+Professor|Professor|Lecturer|PhD\s+Student)[^.!?]{0,50}(am\s+an?\s+)?(Assistant\s+Professor|Professor|Lecturer|PhD\s+Student)/gi, (match, p1, p2, p3, p4, p5) => {
+                // Prefer "Assistant Professor" over "Professor"
+                if (p5 && p5.includes('Assistant')) return p5;
+                if (p2 && p2.includes('Assistant')) return p2;
+                return p5 || p2;
+            });
             // Remove query params
             description = description.replace(/\?[^\s"']*/gi, '');
             description = description.replace(/\\\s+/g, ' ');

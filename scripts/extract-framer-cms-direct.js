@@ -1094,8 +1094,8 @@ function extractAllPeople() {
         // CLEAN description: remove image URLs, artifacts, encoded data
         // Extract clean description from individual person page paragraphs (best source)
         let cleanDescription = null;
-        const htmlPath = path.join(siteDir, 'pubs-news-ppl', `${slug}.html`);
-        if (fs.existsSync(htmlPath)) {
+        const personHtmlPath = path.join(siteDir, 'pubs-news-ppl', `${slug}.html`);
+        if (fs.existsSync(personHtmlPath)) {
             try {
                 const html = fs.readFileSync(htmlPath, 'utf8');
                 const bodyMatch = html.match(/<body[^>]*>([\s\S]+?)<\/body>/);

@@ -1092,44 +1092,37 @@ function extractAllPeople() {
         }
         
         // CLEAN description: remove image URLs, artifacts, encoded data
-        // But be conservative - preserve valid sentences
+        // Use sentence-based filtering to preserve valid text
         if (description) {
-            // Remove image URLs
+            // Remove image URLs first
             description = description.replace(/https?:\/\/framerusercontent\.com\/images\/[^\s"']*/gi, '');
             // Remove ",," artifacts
             description = description.replace(/",,/g, '');
             description = description.replace(/,,/g, '');
-            // Remove slug-like patterns (e.g., "chair-of-evolutionary-")
-            description = description.replace(/[a-z]+(-[a-z]+){2,}-?\s*/gi, '');
-            // Remove encoded Framer data patterns (slug + encoded)
-            description = description.replace(/[a-z]+-[a-z]+[A-Za-z0-9]{12,}/gi, '');
-            // Remove encoded data (alphanumeric strings 8+ chars with no vowels or very long)
-            description = description.replace(/\b[A-Za-z0-9]{8,}\b/g, (match) => {
-                // Remove if it's clearly encoded (no vowels, very long, or looks like hash)
-                if (match.length > 10 && !match.match(/[aeiouAEIOU]{2,}/i)) return '';
-                return match;
-            });
-            // Fix merged words (e.g., "GreenAssistant" -> "Green Assistant")
-            description = description.replace(/([a-z])([A-Z][a-z]+)/g, '$1 $2');
-            // Remove broken word patterns (like "chair--" or "word--")
-            description = description.replace(/\b\w+--\s*/g, '');
-            description = description.replace(/\b\w+\s*--/g, '');
-            // Remove "am an" type artifacts and fix "am Assistant" -> "Assistant"
-            description = description.replace(/\b(am|an|the|a)\s+(am|an|the|a)\b/gi, '$1');
-            description = description.replace(/\bam\s+Assistant\b/gi, 'Assistant');
-            description = description.replace(/\bam\s+([A-Z][a-z]+)\b/gi, '$1'); // "am Professor" -> "Professor"
             // Remove query params
             description = description.replace(/\?[^\s"']*/gi, '');
             // Remove backslash artifacts
             description = description.replace(/\\\s+/g, ' ');
-            // Clean up multiple spaces
+            
+            // Split into sentences and filter out ones with obvious artifacts
+            const sentences = description.match(/[^.!?]{20,}[.!?]/g) || [description];
+            const cleanSentences = sentences.filter(sent => {
+                const s = sent.trim();
+                // Skip sentences with obvious artifacts
+                if (s.match(/[a-z]+-[a-z]+-[a-z]+/)) return false; // slug patterns
+                if (s.match(/\b[A-Za-z0-9]{12,}\b/) && !s.match(/[aeiouAEIOU]{3,}/i)) return false; // encoded data
+                if (s.match(/\b\w+--/)) return false; // broken words
+                if (s.match(/\b(am|an|the|a)\s+(am|an|the|a)\b/)) return false; // "am an"
+                return true;
+            });
+            
+            // Join clean sentences
+            description = cleanSentences.join(' ').trim();
+            
+            // Final cleanup
             description = description.replace(/\s+/g, ' ').trim();
-            // Remove leading/trailing punctuation
             description = description.replace(/^[,\s\.\"']+|[,\s\.\"']+$/g, '');
-            // Remove standalone quotes
             description = description.replace(/^["']|["']$/g, '');
-            // Remove any remaining leading non-letter characters
-            description = description.replace(/^[^A-Za-z]*/, '');
         }
         
         // Extract image from description if not already found

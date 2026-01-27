@@ -209,14 +209,11 @@ ${fields.join('\n')}
 
 `;
 
-  // Use cleaned description as body, or fallback to content
+  // Use description as body, or fallback to content
   let body = description || person.body || person.content || '';
-  // Clean body too
+  // Minimal cleanup for body (remove HTML, basic entities)
   body = body.replace(/<[^>]+>/g, '');
   body = body.replace(/&nbsp;/g, ' ');
-  body = body.replace(/https?:\/\/framerusercontent\.com\/images\/[^\s"']*/gi, '');
-  body = body.replace(/",,/g, '');
-  body = body.replace(/,,/g, '');
   body = body.trim();
 
   return frontmatter + body;

@@ -1092,37 +1092,71 @@ function extractAllPeople() {
         }
         
         // CLEAN description: remove image URLs, artifacts, encoded data
-        // Use sentence-based filtering to preserve valid text
-        if (description) {
-            // Remove image URLs first
+        // Extract clean description from individual person page paragraphs (best source)
+        let cleanDescription = null;
+        const htmlPath = path.join(siteDir, 'pubs-news-ppl', `${slug}.html`);
+        if (fs.existsSync(htmlPath)) {
+            try {
+                const html = fs.readFileSync(htmlPath, 'utf8');
+                const bodyMatch = html.match(/<body[^>]*>([\s\S]+?)<\/body>/);
+                if (bodyMatch) {
+                    let body = bodyMatch[1];
+                    // Remove scripts, styles, nav
+                    body = body.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '');
+                    body = body.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '');
+                    body = body.replace(/<nav[^>]*>[\s\S]*?<\/nav>/gi, '');
+                    
+                    // Extract clean paragraphs
+                    const pMatches = Array.from(body.matchAll(/<p[^>]*>([^<]+)<\/p>/g));
+                    const paragraphs = pMatches
+                        .map(m => m[1].trim())
+                        .filter(p => 
+                            p.length > 100 && 
+                            !p.includes('Banded Mongoose Research Project') &&
+                            !p.match(/^(About|People|Research|News|Publications|Contact)$/i) &&
+                            !p.includes('Mongoose videos by') &&
+                            !p.match(/[a-z]+-[a-z]+-[a-z]+/) && // No slug patterns
+                            !p.match(/\b[A-Za-z0-9]{15,}\b/) // No long encoded data
+                        );
+                    
+                    if (paragraphs.length > 0) {
+                        cleanDescription = paragraphs.join(' ').trim();
+                        // Remove image URLs if any
+                        cleanDescription = cleanDescription.replace(/https?:\/\/framerusercontent\.com\/images\/[^\s"']*/gi, '');
+                        cleanDescription = cleanDescription.replace(/\s+/g, ' ').trim();
+                    }
+                }
+            } catch (e) {
+                // Fall through
+            }
+        }
+        
+        // Use clean description from individual page, or clean the existing one
+        if (cleanDescription && cleanDescription.length > 100) {
+            description = cleanDescription;
+        } else if (description) {
+            // Clean the existing description (from People page)
+            // Remove image URLs
             description = description.replace(/https?:\/\/framerusercontent\.com\/images\/[^\s"']*/gi, '');
             // Remove ",," artifacts
             description = description.replace(/",,/g, '');
             description = description.replace(/,,/g, '');
+            // Remove slug patterns
+            description = description.replace(/[a-z]+(-[a-z]+){2,}-?\s*/gi, '');
+            // Remove encoded data (very long alphanumeric with no vowels)
+            description = description.replace(/\b[A-Za-z0-9]{15,}\b/g, (match) => {
+                if (!match.match(/[aeiouAEIOU]{2,}/i)) return '';
+                return match;
+            });
+            // Remove broken words
+            description = description.replace(/\b\w+--\s*/g, '');
+            // Fix merged words
+            description = description.replace(/([a-z])([A-Z][a-z]+)/g, '$1 $2');
             // Remove query params
             description = description.replace(/\?[^\s"']*/gi, '');
-            // Remove backslash artifacts
             description = description.replace(/\\\s+/g, ' ');
-            
-            // Split into sentences and filter out ones with obvious artifacts
-            const sentences = description.match(/[^.!?]{20,}[.!?]/g) || [description];
-            const cleanSentences = sentences.filter(sent => {
-                const s = sent.trim();
-                // Skip sentences with obvious artifacts
-                if (s.match(/[a-z]+-[a-z]+-[a-z]+/)) return false; // slug patterns
-                if (s.match(/\b[A-Za-z0-9]{12,}\b/) && !s.match(/[aeiouAEIOU]{3,}/i)) return false; // encoded data
-                if (s.match(/\b\w+--/)) return false; // broken words
-                if (s.match(/\b(am|an|the|a)\s+(am|an|the|a)\b/)) return false; // "am an"
-                return true;
-            });
-            
-            // Join clean sentences
-            description = cleanSentences.join(' ').trim();
-            
-            // Final cleanup
             description = description.replace(/\s+/g, ' ').trim();
             description = description.replace(/^[,\s\.\"']+|[,\s\.\"']+$/g, '');
-            description = description.replace(/^["']|["']$/g, '');
         }
         
         // Extract image from description if not already found

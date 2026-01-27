@@ -1103,13 +1103,21 @@ function extractAllPeople() {
             description = description.replace(/[a-z]+(-[a-z]+){2,}-?\s*/gi, '');
             // Remove encoded Framer data patterns (slug + encoded)
             description = description.replace(/[a-z]+-[a-z]+[A-Za-z0-9]{12,}/gi, '');
+            // Remove encoded data (alphanumeric strings 8+ chars with no vowels or very long)
+            description = description.replace(/\b[A-Za-z0-9]{8,}\b/g, (match) => {
+                // Remove if it's clearly encoded (no vowels, very long, or looks like hash)
+                if (match.length > 10 && !match.match(/[aeiouAEIOU]{2,}/i)) return '';
+                return match;
+            });
             // Fix merged words (e.g., "GreenAssistant" -> "Green Assistant")
             description = description.replace(/([a-z])([A-Z][a-z]+)/g, '$1 $2');
             // Remove broken word patterns (like "chair--" or "word--")
             description = description.replace(/\b\w+--\s*/g, '');
             description = description.replace(/\b\w+\s*--/g, '');
-            // Remove "am an" type artifacts
+            // Remove "am an" type artifacts and fix "am Assistant" -> "Assistant"
             description = description.replace(/\b(am|an|the|a)\s+(am|an|the|a)\b/gi, '$1');
+            description = description.replace(/\bam\s+Assistant\b/gi, 'Assistant');
+            description = description.replace(/\bam\s+([A-Z][a-z]+)\b/gi, '$1'); // "am Professor" -> "Professor"
             // Remove query params
             description = description.replace(/\?[^\s"']*/gi, '');
             // Remove backslash artifacts

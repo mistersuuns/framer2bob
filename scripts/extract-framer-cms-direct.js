@@ -645,18 +645,45 @@ function extractAllPublications() {
         const title = data.h1[0];
         const authors = data.h2[0].replace(/[\u2039\u203A]/g, '').trim();
         
-        // Extract year
+        // Extract year and journal from searchIndex paragraphs
+        // Pattern: first 7 items are navigation, then p[7]=journal (or year), p[8]=year
         let year = null;
-        if (data.p) {
-            for (const p of data.p) {
-                const yearMatch = p.match(/\b(19|20)\d{2}\b/);
-                if (yearMatch) {
-                    year = yearMatch[0];
-                    break;
+        let journalFromIndex = null;
+        if (data.p && data.p.length > 7) {
+            // Skip navigation items (About, People, Research Themes, News, Media/Collabs, Publications, Contact)
+            const contentParagraphs = data.p.slice(7).filter(p =>
+                !p.includes('Mongoose videos') &&
+                !p.includes('BMPR. All rights reserved')
+            );
+
+            if (contentParagraphs.length > 0) {
+                const first = contentParagraphs[0];
+                // Check if first content paragraph is a year or journal
+                if (/^\d{4}$/.test(first)) {
+                    // First is year, no journal
+                    year = first;
+                } else {
+                    // First is journal
+                    journalFromIndex = first;
+                    // Second should be year
+                    if (contentParagraphs.length > 1 && /^\d{4}$/.test(contentParagraphs[1])) {
+                        year = contentParagraphs[1];
+                    }
+                }
+            }
+
+            // Fallback: search all paragraphs for year if not found
+            if (!year) {
+                for (const p of data.p) {
+                    const yearMatch = p.match(/\b(19|20)\d{2}\b/);
+                    if (yearMatch) {
+                        year = yearMatch[0];
+                        break;
+                    }
                 }
             }
         }
-        
+
         // Use local HTML files (don't download from live site to avoid Netlify credit usage)
         const htmlPath = path.join(siteDir, 'pubs-news-ppl', `${slug}.html`);
         let allFields = {};
@@ -729,8 +756,8 @@ function extractAllPublications() {
             });
         }
         
-        // Extract journal from allFields (now extracted in extractAllFieldsFromHTML)
-        const journal = allFields.journal || null;
+        // Extract journal - prioritize searchIndex (more reliable), then HTML extraction
+        const journal = journalFromIndex || allFields.journal || null;
         
         const pub = {
             id: slug,
